@@ -50,6 +50,13 @@ Now, create a URDF file called "mira.urdf" in the "urdf" folder
 ```bash
 touch mira.urdf
 ```
+For `link` there are three basic geometry shapes:
+```xml
+<cylinder radius="meters" length="meters"/>
+<box size="x_length y_length z_length"/>
+<sphere radius="meters"/>
+```
+For mira, we 
 ```xml
 <?xml version="1.0"?>
 <robot name="mira">
@@ -90,12 +97,7 @@ touch mira.urdf
 </robot>     
 ```
 
-```xml
 
-<cylinder radius="meters" length="meters"/>
-<box size="x_length y_length z_length"/>
-<sphere radius="meters"/>
-```
 
 
 
@@ -147,6 +149,6 @@ touch mira.urdf
 
 #
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTI0NTY0NjAwOSwtMTYxODE0NjYwNiwxNz
-UyMTc5MTQzXX0=
+eyJoaXN0b3J5IjpbLTY5MDUwOTcwLC0yNDU2NDYwMDksLTE2MT
+gxNDY2MDYsMTc1MjE3OTE0M119
 -->
