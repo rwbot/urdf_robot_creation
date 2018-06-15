@@ -143,13 +143,10 @@ This command launches a totally empty RVIZ session, to which you will have to ad
 ```bash
 roslaunch my_mira_description urdf_visualize.launch model:='$(find my_mira_description)/urdf/mira.urdf'
 ```
-You will have to add two elements in RVIZ:  
-
-2.  RobotModel: In this case, just select the  **robot_description** variable for the  **RobotDescription field**.
-
-5.  TF: It will turn green as soon as you select the  **correct fixed frame**, in this case  **base_link**.  
-    
-6.  Save the RVIZ file so that you don't have to do this adding every time you launch.
+You will have to add two elements in RVIZ. Afterwards save the RVIZ file so that you don't have to do this adding every time you launch.  
+1.  **RobotModel**: In this case, just select the  **robot_description** variable for the  **RobotDescription field**.
+2.  **TF**: It will turn green as soon as you select the  **correct fixed frame**, in this case  **base_link**. 
+3.  
 
 
 
@@ -191,8 +188,8 @@ You will have to add two elements in RVIZ:
 
 #
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIwMDU4OTMzMzksMTM4OTQxMzA3NywtNj
-U3MjQzMzc2LC0xMTUxNDI2NDQyLC03MDI1MzEwNDYsMTExMTAx
-NDkzNywtMTc2MjQ0MTI4NCwtMjQ1NjQ2MDA5LC0xNjE4MTQ2Nj
-A2LDE3NTIxNzkxNDNdfQ==
+eyJoaXN0b3J5IjpbNDU5MjkwODkxLDEzODk0MTMwNzcsLTY1Nz
+I0MzM3NiwtMTE1MTQyNjQ0MiwtNzAyNTMxMDQ2LDExMTEwMTQ5
+MzcsLTE3NjI0NDEyODQsLTI0NTY0NjAwOSwtMTYxODE0NjYwNi
+wxNzUyMTc5MTQzXX0=
 -->
