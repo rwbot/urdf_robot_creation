@@ -117,20 +117,19 @@ To know how ROS will see the model and to help you position the links and joints
 ```xml
 <launch>
 
-    <!-- USE: roslaunch my_mira_description urdf_visualize.launch model:='$(find myrobot_package)/urdf/myrobot.urdf' -->
+     <!--USE: roslaunch my_mira_description urdf_visualize.launch model:='$(find myrobot_package)/urdf/myrobot.urdf' -->
     <arg name="model" default=""/>
     
     <!--Loads  URDF file to the param server variable "robot_description" -->
     <param name="robot_description" command="cat $(arg model)"/>
-    <!-- Second robot would need $ROBOT_2_DESCRIPTION and $MODEL_2 etc.-->
+     <!--Second robot would need $ROBOT_2_DESCRIPTION and $MODEL_2 etc.-->
 
-	<!--Send fake joint values-->
+    <!--Start jointstate publisher & robotstate publisher. These publish the TFs of the URDF of the robot links and joints.-->
+    <!--Send fake joint values-->
     <node pkg="joint_state_publisher" name="joint_state_publisher" type="joint_state_publisher">
         <param name="use_gui" value="TRUE"/>
     </node>
-
     <!--Combine joint values-->
-    <!--Start jointstate publisher & robotstate publisher. These publish the TFs of the URDF of the robot links and joints.-->
     <node pkg="robot_state_publisher" name="robot_state_publisher" type="state_publisher" />
 
     <!--To launch rviz with a rviz config file-->
@@ -182,7 +181,7 @@ To know how ROS will see the model and to help you position the links and joints
 
 #
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTk4MDIxNjQ5NCwxMzg5NDEzMDc3LC02NT
+eyJoaXN0b3J5IjpbMTE2ODIwODQ4NiwxMzg5NDEzMDc3LC02NT
 cyNDMzNzYsLTExNTE0MjY0NDIsLTcwMjUzMTA0NiwxMTExMDE0
 OTM3LC0xNzYyNDQxMjg0LC0yNDU2NDYwMDksLTE2MTgxNDY2MD
 YsMTc1MjE3OTE0M119
