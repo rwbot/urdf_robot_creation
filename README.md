@@ -133,12 +133,15 @@ To know how ROS will see the model and to help you position the links and joints
     <node pkg="robot_state_publisher" name="robot_state_publisher" type="state_publisher" />
 
     <!--To launch rviz with a rviz config file-->
-    <!--<node pkg="rviz" name="rviz" type="rviz" args="-d $(find pkg)/rviz_config/rviz_config.rviz"/>-->
+    <!--<node pkg="rviz" name="rviz" type="rviz" args="-d $(find pkg)/rviz_config/rviz_config_file.rviz"/>-->
     <node pkg="rviz" name="rviz" type="rviz" args="" />
 
 </launch>
 ```
-
+Launch using 
+```bash
+roslaunch my_mira_description urdf_visualize.launch model:='$(find my_mira_description)/urdf/mira.urdf'
+```
 
 
 
@@ -181,8 +184,8 @@ To know how ROS will see the model and to help you position the links and joints
 
 #
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTE2ODIwODQ4NiwxMzg5NDEzMDc3LC02NT
-cyNDMzNzYsLTExNTE0MjY0NDIsLTcwMjUzMTA0NiwxMTExMDE0
-OTM3LC0xNzYyNDQxMjg0LC0yNDU2NDYwMDksLTE2MTgxNDY2MD
-YsMTc1MjE3OTE0M119
+eyJoaXN0b3J5IjpbLTQ5MzEzMDM1LDEzODk0MTMwNzcsLTY1Nz
+I0MzM3NiwtMTE1MTQyNjQ0MiwtNzAyNTMxMDQ2LDExMTEwMTQ5
+MzcsLTE3NjI0NDEyODQsLTI0NTY0NjAwOSwtMTYxODE0NjYwNi
+wxNzUyMTc5MTQzXX0=
 -->
