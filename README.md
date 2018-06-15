@@ -149,8 +149,13 @@ You will have to add two elements in RVIZ and Afterwards save the RVIZ file so t
 
 NOTE: As you can see, you have RVIZ, but also a window with a slider. This slider allows you to move the joints. It's the **JointStatePublisher Gui**.  This is vital for checking if the joints are correctly set in the URDF. It also allows you to see if the given limits in the joints are the correct ones.   If **you can't see the "joint control" window**, it must be behind the RVIZ window. Just move it around and, to avoid any further loss, right click on it and select in **Layers>Always On Top**.
 
-Now that we have an Rviz Config file, we can include it in ``
-
+Now that we have an Rviz Config file, we can include it in `urdf_visualize.launch`:
+```xml
+<!--To launch rviz with a rviz config file-->
+<!--<node pkg="rviz" name="rviz" type="rviz" args="-d $(find pkg)/rviz_config/rviz_config_file.rviz"/>-->
+<node pkg="rviz" name="rviz" type="rviz" args="-d $(find my_mira_description)/rviz_config/urdf.rviz" />
+```
+And 
 You can also see the Link-Joint structure of any URDF file through the **urdf_to_graphiz tool**:
 ```bash
 $ roscd my_mira_description/urdf  
@@ -193,8 +198,9 @@ $ urdf_to_graphiz mira.urdf
 
 #
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNzA2NTU1Mzk5LDUzMzA2ODg4NCwxNjEzOD
-I3NTQ2LDEzODk0MTMwNzcsLTY1NzI0MzM3NiwtMTE1MTQyNjQ0
-MiwtNzAyNTMxMDQ2LDExMTEwMTQ5MzcsLTE3NjI0NDEyODQsLT
-I0NTY0NjAwOSwtMTYxODE0NjYwNiwxNzUyMTc5MTQzXX0=
+eyJoaXN0b3J5IjpbLTIwMjA5MDM0ODIsNTMzMDY4ODg0LDE2MT
+M4Mjc1NDYsMTM4OTQxMzA3NywtNjU3MjQzMzc2LC0xMTUxNDI2
+NDQyLC03MDI1MzEwNDYsMTExMTAxNDkzNywtMTc2MjQ0MTI4NC
+wtMjQ1NjQ2MDA5LC0xNjE4MTQ2NjA2LDE3NTIxNzkxNDNdfQ==
+
 -->
