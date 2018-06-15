@@ -45,9 +45,55 @@ Then create the following folders inside it:
 -   worlds
 
 These folders are the ones that you will need to have a fully-functional simulated robot.  
+
 Now, create a URDF file called "mira.urdf" in the "urdf" folder
+```bash
+touch mira.urdf
+```
+```xml
+<?xml version="1.0"?>
+<robot name="mira">
+<!--URDF uses SI Units: meters, radians and kilograms-->
+<!-- Three basic geometry shapes:
+<cylinder radius="meters" length="meters"/>
+<box size="x_length y_length z_length"/>
+<sphere radius="meters"/>
+-->
 
+    <link 
+    name="base_link">
+        <visual>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.06" length="0.09"/>
+            </geometry>
+        </visual>
+    </link>
+    
+    <link 
+    name="roll_M1_link">
+        <visual>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.06" length="0.09"/>
+            </geometry>
+        </visual>
+    </link>
+    
+    <!--Joint types: revolute, continuous, prismatic, fixed, floating, planar-->
+    <joint 
+    name="roll_joint" type="revolute">
+        <parent link="base_link"/>
+        <child link="roll_M1_link"/>
+        <origin xyz="0.0023 0 -0.0005" rpy="0 0 0"/>
+        <!--lower and upper are angle limits in radians-->
+        <limit lower="-0.2" upper="0.2" effort="0.1" velocity="0.005"/>
+        <!--1 0 0 Defines X as the axis of rotation-->
+        <axis xyz="1 0 0"/>
+    </joint>
 
+</robot>     
+```
 
 
 
@@ -100,6 +146,6 @@ Now, create a URDF file called "mira.urdf" in the "urdf" folder
 
 #
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTI1NjkwMzgwMSwtMTYxODE0NjYwNiwxNz
-UyMTc5MTQzXX0=
+eyJoaXN0b3J5IjpbNjM1NDQzNTMxLC0xNjE4MTQ2NjA2LDE3NT
+IxNzkxNDNdfQ==
 -->
