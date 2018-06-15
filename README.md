@@ -27,8 +27,9 @@ So, let's get started.
 
 ## 1. Learn how to use the URDF creation tools and the creation procedure[](https://i-08d56a1597871c9af.robotigniteacademy.com/jupyter/notebooks/Course_urdfROS_Unit_1.ipynb#1.-Learn-how-to-use-the-URDF-creation-tools-and-the-creation-procedure)
 
-Let's create the URDF file in the appropriate ROS structure.Let's create a ROS package for each robot model that you create.  
-In this case, create a ROS package named "my_mira_description." It's a common practice to always create a "my_robot_description" package where you store all of the files that describe the robot. You will find this robotname_description package everywhere in ROS packages that have robot models defined.
+* Let's create the URDF file in the appropriate ROS structure and let's create a ROS package for each robot model that you create.  
+* It's a common practice to always create a "my_robot_description" package where you store all of the files that describe the robot. You will find this robotname_description package everywhere in ROS packages that have robot models defined.
+* So create a ROS package named "
 
 Execute in WebShell #1
 
@@ -101,6 +102,6 @@ Now, create a URDF file called "mira.urdf" in the "urdf" folder
 
 #
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTUyNzE0OTA1MCwtMTYxODE0NjYwNiwxNz
+eyJoaXN0b3J5IjpbMTE0NzI1MzQ5OSwtMTYxODE0NjYwNiwxNz
 UyMTc5MTQzXX0=
 -->
