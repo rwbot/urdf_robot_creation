@@ -113,7 +113,7 @@ In the example given, you have two links; in this case, two cylinders connected 
 -   **Axis**: Here you define around which Parent's AXIS the Child link will revolve. This, of course, depends on the type of joint; some of them don't have axis tags because they are irrelevant, such as the fixed joint.
 
 
-
+## 3. See the URDF
 
 
 
@@ -161,7 +161,7 @@ In the example given, you have two links; in this case, two cylinders connected 
 
 #
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTcwMjUzMTA0NiwxMTExMDE0OTM3LC0xNz
-YyNDQxMjg0LC0yNDU2NDYwMDksLTE2MTgxNDY2MDYsMTc1MjE3
-OTE0M119
+eyJoaXN0b3J5IjpbLTE3MzA5NTIyNjIsLTcwMjUzMTA0NiwxMT
+ExMDE0OTM3LC0xNzYyNDQxMjg0LC0yNDU2NDYwMDksLTE2MTgx
+NDY2MDYsMTc1MjE3OTE0M119
 -->
