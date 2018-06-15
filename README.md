@@ -115,7 +115,7 @@ In the example given, you have two links; in this case, two cylinders connected 
 
 ## 3. (rViz)ualize the URDF
 
-To know how ROS will see the model and to help you position the links and joints, you will use the following launch. Create it in a file called **urdf_visualize.launch**
+To know how ROS will see the model and to help you position the links and joints, you will use the following **urdf_visualize.launch**
 
 
 
@@ -161,7 +161,7 @@ To know how ROS will see the model and to help you position the links and joints
 
 #
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbOTI4NDQ5MzExLC03MDI1MzEwNDYsMTExMT
-AxNDkzNywtMTc2MjQ0MTI4NCwtMjQ1NjQ2MDA5LC0xNjE4MTQ2
-NjA2LDE3NTIxNzkxNDNdfQ==
+eyJoaXN0b3J5IjpbLTExNTE0MjY0NDIsLTcwMjUzMTA0NiwxMT
+ExMDE0OTM3LC0xNzYyNDQxMjg0LC0yNDU2NDYwMDksLTE2MTgx
+NDY2MDYsMTc1MjE3OTE0M119
 -->
