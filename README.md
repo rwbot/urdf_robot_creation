@@ -124,6 +124,11 @@ To know how ROS will see the model and to help you position the links and joints
     <param name="robot_description" command="cat $(arg model)"/>
     <!-- Second robot would need $ROBOT_2_DESCRIPTION and $MODEL_2 etc.-->
 
+	<!--Send fake joint values-->
+    <node pkg="joint_state_publisher" name="joint_state_publisher" type="joint_state_publisher">
+        <param name="use_gui" value="TRUE"/>
+    </node>
+
     <!--Combine joint values-->
     <!--Start jointstate publisher & robotstate publisher. These publish the TFs of the URDF of the robot links and joints.-->
     <node pkg="robot_state_publisher" name="robot_state_publisher" type="state_publisher" />
@@ -177,8 +182,8 @@ To know how ROS will see the model and to help you position the links and joints
 
 #
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTM4OTQxMzA3NywtNjU3MjQzMzc2LC0xMT
-UxNDI2NDQyLC03MDI1MzEwNDYsMTExMTAxNDkzNywtMTc2MjQ0
-MTI4NCwtMjQ1NjQ2MDA5LC0xNjE4MTQ2NjA2LDE3NTIxNzkxND
-NdfQ==
+eyJoaXN0b3J5IjpbLTk4MDIxNjQ5NCwxMzg5NDEzMDc3LC02NT
+cyNDMzNzYsLTExNTE0MjY0NDIsLTcwMjUzMTA0NiwxMTExMDE0
+OTM3LC0xNzYyNDQxMjg0LC0yNDU2NDYwMDksLTE2MTgxNDY2MD
+YsMTc1MjE3OTE0M119
 -->
