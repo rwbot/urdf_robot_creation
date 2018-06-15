@@ -56,7 +56,7 @@ For `link` there are three basic geometry shapes:
 <box size="x_length y_length z_length"/>
 <sphere radius="meters"/>
 ```
-For mira, we will only use `<cylinder>`
+For mira, we will only use **`<cylinder>`**
 ```xml
 <?xml version="1.0"?>
 <robot name="mira">
@@ -98,7 +98,21 @@ For mira, we will only use `<cylinder>`
 ```
 
 
+## 2. Links and Joints[](https://i-08d56a1597871c9af.robotigniteacademy.com/jupyter/notebooks/Course_urdfROS_Unit_1.ipynb#2.-Links-and-Joints)
 
+In the example given, you have two links; in this case, two cylinders connected through a joint. Joints are what make elements of a robot turn and move. They are the articulations of the robot.
+
+The main elements to define in a joint are:
+
+-   Type: there are these types: revolute, continuous, prismatic, fixed, floating, and planar. You can learn more here:  [http://wiki.ros.org/urdf/XML/joint](http://wiki.ros.org/urdf/XML/joint)The joint selection will depend on how the physical model of your robot moves.
+
+-   Parent and Child: Here is where you set who is connected to your link.
+
+-   Origin: All of the coordinates and rpy are referenced to the Parent axis, not the child axis.
+
+-   Limit: This is a very important element, especially when you have to control a robot movement.
+
+-   Axis: Here you define around which Parent's AXIS the Child link will revolve. This, of course, depends on the type of joint; some of them don't have axis tags because they are irrelevant, such as the fixed joint.
 
 
 
@@ -149,6 +163,7 @@ For mira, we will only use `<cylinder>`
 
 #
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTExMTAxNDkzNywtMTc2MjQ0MTI4NCwtMj
-Q1NjQ2MDA5LC0xNjE4MTQ2NjA2LDE3NTIxNzkxNDNdfQ==
+eyJoaXN0b3J5IjpbODI1NDM3MzAzLDExMTEwMTQ5MzcsLTE3Nj
+I0NDEyODQsLTI0NTY0NjAwOSwtMTYxODE0NjYwNiwxNzUyMTc5
+MTQzXX0=
 -->
