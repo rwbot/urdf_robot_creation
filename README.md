@@ -9,9 +9,7 @@ Notes accompanying the Robot Ignite Academy ROBOT CREATION WITH URDF Course http
  - If you have a real robot and you want to use the ROS infrastructure, you need a virtual description of how the robot is connected and where each of the sensors is in some applications. For example, if you have a camera mounted on the head of the robot, through the virtual robot description (the URDF file ), you can use the TF ROS structure to know exactly where the camera is based by only the joint sensor readings.  
 It also allows you to represent the robot model inside RVIZ.
 
-### ROS XML Syntax [](http://wiki.ros.org/roslaunch/XML
-
-
+##  [ROS XML Syntax](http://wiki.ros.org/roslaunch/XML)
 
 # Create your first URDF Model
 
@@ -161,7 +159,7 @@ To know how ROS will see the model and to help you position the links and joints
 
 #
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTczODY4NTUzMCwtMTE1MTQyNjQ0MiwtNz
+eyJoaXN0b3J5IjpbLTY1NzI0MzM3NiwtMTE1MTQyNjQ0MiwtNz
 AyNTMxMDQ2LDExMTEwMTQ5MzcsLTE3NjI0NDEyODQsLTI0NTY0
 NjAwOSwtMTYxODE0NjYwNiwxNzUyMTc5MTQzXX0=
 -->
