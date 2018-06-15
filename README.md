@@ -138,11 +138,18 @@ To know how ROS will see the model and to help you position the links and joints
 
 </launch>
 ```
-Launch using 
+
+This command launches a totally empty RVIZ session, to which you will have to add the TF and RobotModel representations:
 ```bash
 roslaunch my_mira_description urdf_visualize.launch model:='$(find my_mira_description)/urdf/mira.urdf'
 ```
+You will have to add two elements in RVIZ:  
 
+2.  RobotModel: In this case, just select the  **robot_description** variable for the  **RobotDescription field**.
+
+5.  TF: It will turn green as soon as you select the  **correct fixed frame**, in this case  **base_link**.  
+    
+6.  Save the RVIZ file so that you don't have to do this adding every time you launch.
 
 
 
@@ -184,8 +191,8 @@ roslaunch my_mira_description urdf_visualize.launch model:='$(find my_mira_descr
 
 #
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTQ5MzEzMDM1LDEzODk0MTMwNzcsLTY1Nz
-I0MzM3NiwtMTE1MTQyNjQ0MiwtNzAyNTMxMDQ2LDExMTEwMTQ5
-MzcsLTE3NjI0NDEyODQsLTI0NTY0NjAwOSwtMTYxODE0NjYwNi
-wxNzUyMTc5MTQzXX0=
+eyJoaXN0b3J5IjpbLTIwMDU4OTMzMzksMTM4OTQxMzA3NywtNj
+U3MjQzMzc2LC0xMTUxNDI2NDQyLC03MDI1MzEwNDYsMTExMTAx
+NDkzNywtMTc2MjQ0MTI4NCwtMjQ1NjQ2MDA5LC0xNjE4MTQ2Nj
+A2LDE3NTIxNzkxNDNdfQ==
 -->
