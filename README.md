@@ -56,7 +56,7 @@ For `link` there are three basic geometry shapes:
 <box size="x_length y_length z_length"/>
 <sphere radius="meters"/>
 ```
-For mira, we 
+For mira, we will only use `xml `
 ```xml
 <?xml version="1.0"?>
 <robot name="mira">
@@ -149,6 +149,6 @@ For mira, we
 
 #
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTY5MDUwOTcwLC0yNDU2NDYwMDksLTE2MT
-gxNDY2MDYsMTc1MjE3OTE0M119
+eyJoaXN0b3J5IjpbLTE3NjI0NDEyODQsLTI0NTY0NjAwOSwtMT
+YxODE0NjYwNiwxNzUyMTc5MTQzXX0=
 -->
