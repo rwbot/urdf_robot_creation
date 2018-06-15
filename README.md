@@ -155,7 +155,6 @@ Now that we have an Rviz Config file, we can include it in `urdf_visualize.launc
 <!--<node pkg="rviz" name="rviz" type="rviz" args="-d $(find pkg)/rviz_config/rviz_config.rviz"/>-->
 <node pkg="rviz" name="rviz" type="rviz" args="-d $(find my_mira_description)/rviz_config/urdf.rviz" />
 ```
-And to 
 You can also see the Link-Joint structure of any URDF file through the **urdf_to_graphiz tool**:
 ```bash
 $ roscd my_mira_description/urdf  
@@ -198,9 +197,9 @@ $ urdf_to_graphiz mira.urdf
 
 #
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIwNzA5Mzg0MzAsLTIwMjA5MDM0ODIsNT
-MzMDY4ODg0LDE2MTM4Mjc1NDYsMTM4OTQxMzA3NywtNjU3MjQz
-Mzc2LC0xMTUxNDI2NDQyLC03MDI1MzEwNDYsMTExMTAxNDkzNy
-wtMTc2MjQ0MTI4NCwtMjQ1NjQ2MDA5LC0xNjE4MTQ2NjA2LDE3
-NTIxNzkxNDNdfQ==
+eyJoaXN0b3J5IjpbLTE1MDAzOTU2OTgsLTIwNzA5Mzg0MzAsLT
+IwMjA5MDM0ODIsNTMzMDY4ODg0LDE2MTM4Mjc1NDYsMTM4OTQx
+MzA3NywtNjU3MjQzMzc2LC0xMTUxNDI2NDQyLC03MDI1MzEwND
+YsMTExMTAxNDkzNywtMTc2MjQ0MTI4NCwtMjQ1NjQ2MDA5LC0x
+NjE4MTQ2NjA2LDE3NTIxNzkxNDNdfQ==
 -->
