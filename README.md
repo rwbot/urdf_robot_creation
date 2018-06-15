@@ -154,7 +154,7 @@ You can also see the Link-Joint structure of any URDF file through the **urdf_to
 $ roscd my_mira_description/urdf  
 $ urdf_to_graphiz mira.urdf
 ```
-
+![enter image description here](https://raw.githubusercontent.com/rwbot/urdf_robot_creation/master/my_mira_description/urdf/mira%20urdf.png)
 
 
 
@@ -191,8 +191,8 @@ $ urdf_to_graphiz mira.urdf
 
 #
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTYxMzgyNzU0NiwxMzg5NDEzMDc3LC02NT
-cyNDMzNzYsLTExNTE0MjY0NDIsLTcwMjUzMTA0NiwxMTExMDE0
-OTM3LC0xNzYyNDQxMjg0LC0yNDU2NDYwMDksLTE2MTgxNDY2MD
-YsMTc1MjE3OTE0M119
+eyJoaXN0b3J5IjpbNTMzMDY4ODg0LDE2MTM4Mjc1NDYsMTM4OT
+QxMzA3NywtNjU3MjQzMzc2LC0xMTUxNDI2NDQyLC03MDI1MzEw
+NDYsMTExMTAxNDkzNywtMTc2MjQ0MTI4NCwtMjQ1NjQ2MDA5LC
+0xNjE4MTQ2NjA2LDE3NTIxNzkxNDNdfQ==
 -->
