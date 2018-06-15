@@ -29,13 +29,13 @@ So, let's get started.
 
 * Let's create the URDF file in the appropriate ROS structure and let's create a ROS package for each robot model that you create.  
 * It's a common practice to always create a "my_robot_description" package where you store all of the files that describe the robot. You will find this robotname_description package everywhere in ROS packages that have robot models defined.
-* So create a ROS package named "
+* So create a ROS package named `my_mira_description`
 
-Execute in WebShell #1
-
+  ```
   
 cd /home/user/catkin_ws/src  
 catkin_create_pkg my_mira_description rospy rviz controller_manager gazebo_ros joint_state_publisher robot_state_publisher  
+```
 
 Once you have the "my_mira_description" package, create the following folders inside it:  
 
@@ -102,6 +102,6 @@ Now, create a URDF file called "mira.urdf" in the "urdf" folder
 
 #
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTE0NzI1MzQ5OSwtMTYxODE0NjYwNiwxNz
-UyMTc5MTQzXX0=
+eyJoaXN0b3J5IjpbMjE2OTAxNzgyLC0xNjE4MTQ2NjA2LDE3NT
+IxNzkxNDNdfQ==
 -->
