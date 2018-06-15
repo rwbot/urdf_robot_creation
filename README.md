@@ -113,9 +113,9 @@ In the example given, you have two links; in this case, two cylinders connected 
 -   **Axis**: Here you define around which Parent's AXIS the Child link will revolve. This, of course, depends on the type of joint; some of them don't have axis tags because they are irrelevant, such as the fixed joint.
 
 
-## 3. See the URDF
+## 3. (rViz)ualize the URDF
 
-
+To know how ROS will see the model and to help you position the links and joints, you will use the following launch. Create it in a file called **urdf_visualize.launch**
 
 
 
@@ -161,7 +161,7 @@ In the example given, you have two links; in this case, two cylinders connected 
 
 #
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE3MzA5NTIyNjIsLTcwMjUzMTA0NiwxMT
-ExMDE0OTM3LC0xNzYyNDQxMjg0LC0yNDU2NDYwMDksLTE2MTgx
-NDY2MDYsMTc1MjE3OTE0M119
+eyJoaXN0b3J5IjpbOTI4NDQ5MzExLC03MDI1MzEwNDYsMTExMT
+AxNDkzNywtMTc2MjQ0MTI4NCwtMjQ1NjQ2MDA5LC0xNjE4MTQ2
+NjA2LDE3NTIxNzkxNDNdfQ==
 -->
