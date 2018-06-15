@@ -147,9 +147,13 @@ You will have to add two elements in RVIZ and Afterwards save the RVIZ file so t
 1.  **RobotModel**: In this case, just select the  **robot_description** variable for the  **RobotDescription field**.
 2.  **TF**: It will turn green as soon as you select the  **correct fixed frame**, in this case  **base_link**. 
 
-##### As you can see, you have RVIZ, but also a window with a slider. This slider allows you to move the joints. It's the **JointStatePublisher Gui**.  This is vital for checking if the joints are correctly set in the URDF. It also allows you to see if the given limits in the joints are the correct ones.   If **you can't see the "joint control" window**, it must be behind the RVIZ window. Just move it around and, to avoid any further loss, right click on it and select in **Layers-->Always On Top**.
+NOTE: As you can see, you have RVIZ, but also a window with a slider. This slider allows you to move the joints. It's the **JointStatePublisher Gui**.  This is vital for checking if the joints are correctly set in the URDF. It also allows you to see if the given limits in the joints are the correct ones.   If **you can't see the "joint control" window**, it must be behind the RVIZ window. Just move it around and, to avoid any further loss, right click on it and select in **Layers>Always On Top**.
 
-
+You can also see the Link-Joint structure of any URDF file through the **urdf_to_graphiz tool**
+```bash
+$ roscd my_mira_description/urdf  
+urdf_to_graphiz mira.urdf
+```
 
 
 
@@ -187,7 +191,7 @@ You will have to add two elements in RVIZ and Afterwards save the RVIZ file so t
 
 #
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNzI3OTY3MDc3LDEzODk0MTMwNzcsLTY1Nz
+eyJoaXN0b3J5IjpbOTEwNjczNTcyLDEzODk0MTMwNzcsLTY1Nz
 I0MzM3NiwtMTE1MTQyNjQ0MiwtNzAyNTMxMDQ2LDExMTEwMTQ5
 MzcsLTE3NjI0NDEyODQsLTI0NTY0NjAwOSwtMTYxODE0NjYwNi
 wxNzUyMTc5MTQzXX0=
