@@ -54,11 +54,6 @@ touch mira.urdf
 <?xml version="1.0"?>
 <robot name="mira">
 <!--URDF uses SI Units: meters, radians and kilograms-->
-<!-- Three basic geometry shapes:
-<cylinder radius="meters" length="meters"/>
-<box size="x_length y_length z_length"/>
-<sphere radius="meters"/>
--->
 
     <link 
     name="base_link">
@@ -95,6 +90,12 @@ touch mira.urdf
 </robot>     
 ```
 
+```xml
+
+<cylinder radius="meters" length="meters"/>
+<box size="x_length y_length z_length"/>
+<sphere radius="meters"/>
+```
 
 
 
@@ -146,6 +147,6 @@ touch mira.urdf
 
 #
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNjM1NDQzNTMxLC0xNjE4MTQ2NjA2LDE3NT
-IxNzkxNDNdfQ==
+eyJoaXN0b3J5IjpbLTI0NTY0NjAwOSwtMTYxODE0NjYwNiwxNz
+UyMTc5MTQzXX0=
 -->
