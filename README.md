@@ -114,8 +114,26 @@ In the example given, you have two links; in this case, two cylinders connected 
 ## 3. (rViz)ualize the URDF
 
 To know how ROS will see the model and to help you position the links and joints, you will use the following **urdf_visualize.launch**
+```xml
+<launch>
 
+    <!-- USE: roslaunch my_mira_description urdf_visualize.launch model:='$(find myrobot_package)/urdf/myrobot.urdf' -->
+    <arg name="model" default=""/>
+    
+    <!--Loads  URDF file to the param server variable "robot_description" -->
+    <param name="robot_description" command="cat $(arg model)"/>
+    <!-- Second robot would need $ROBOT_2_DESCRIPTION and $MODEL_2 etc.-->
 
+    <!--Combine joint values-->
+    <!--Start jointstate publisher & robotstate publisher. These publish the TFs of the URDF of the robot links and joints.-->
+    <node pkg="robot_state_publisher" name="robot_state_publisher" type="state_publisher" />
+
+    <!--To launch rviz with a rviz config file-->
+    <!--<node pkg="rviz" name="rviz" type="rviz" args="-d $(find pkg)/rviz_config/rviz_config.rviz"/>-->
+    <node pkg="rviz" name="rviz" type="rviz" args="" />
+
+</launch>
+```
 
 
 
@@ -159,7 +177,8 @@ To know how ROS will see the model and to help you position the links and joints
 
 #
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTY1NzI0MzM3NiwtMTE1MTQyNjQ0MiwtNz
-AyNTMxMDQ2LDExMTEwMTQ5MzcsLTE3NjI0NDEyODQsLTI0NTY0
-NjAwOSwtMTYxODE0NjYwNiwxNzUyMTc5MTQzXX0=
+eyJoaXN0b3J5IjpbMTM4OTQxMzA3NywtNjU3MjQzMzc2LC0xMT
+UxNDI2NDQyLC03MDI1MzEwNDYsMTExMTAxNDkzNywtMTc2MjQ0
+MTI4NCwtMjQ1NjQ2MDA5LC0xNjE4MTQ2NjA2LDE3NTIxNzkxND
+NdfQ==
 -->
