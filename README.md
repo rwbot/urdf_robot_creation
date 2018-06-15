@@ -152,10 +152,10 @@ NOTE: As you can see, you have RVIZ, but also a window with a slider. This slide
 Now that we have an Rviz Config file, we can include it in `urdf_visualize.launch`:
 ```xml
 <!--To launch rviz with a rviz config file-->
-<!--<node pkg="rviz" name="rviz" type="rviz" args="-d $(find pkg)/rviz_config/rviz_config_file.rviz"/>-->
+<!--<node pkg="rviz" name="rviz" type="rviz" args="-d $(find pkg)/rviz_config/rviz_config.rviz"/>-->
 <node pkg="rviz" name="rviz" type="rviz" args="-d $(find my_mira_description)/rviz_config/urdf.rviz" />
 ```
-And 
+And to 
 You can also see the Link-Joint structure of any URDF file through the **urdf_to_graphiz tool**:
 ```bash
 $ roscd my_mira_description/urdf  
@@ -198,9 +198,9 @@ $ urdf_to_graphiz mira.urdf
 
 #
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIwMjA5MDM0ODIsNTMzMDY4ODg0LDE2MT
-M4Mjc1NDYsMTM4OTQxMzA3NywtNjU3MjQzMzc2LC0xMTUxNDI2
-NDQyLC03MDI1MzEwNDYsMTExMTAxNDkzNywtMTc2MjQ0MTI4NC
-wtMjQ1NjQ2MDA5LC0xNjE4MTQ2NjA2LDE3NTIxNzkxNDNdfQ==
-
+eyJoaXN0b3J5IjpbLTIwNzA5Mzg0MzAsLTIwMjA5MDM0ODIsNT
+MzMDY4ODg0LDE2MTM4Mjc1NDYsMTM4OTQxMzA3NywtNjU3MjQz
+Mzc2LC0xMTUxNDI2NDQyLC03MDI1MzEwNDYsMTExMTAxNDkzNy
+wtMTc2MjQ0MTI4NCwtMjQ1NjQ2MDA5LC0xNjE4MTQ2NjA2LDE3
+NTIxNzkxNDNdfQ==
 -->
