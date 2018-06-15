@@ -3,18 +3,17 @@
 
 Notes accompanying the Robot Ignite Academy ROBOT CREATION WITH URDF Course https://www.robotigniteacademy.com/en/course/robot-creation-with-urdf-ros/details/
 
-
-
-* In this unit, you will learn how to go from a physical robot to a visual virtual model. By visual, we understand that its not a physically working simulation model. It's only the barebones of what, at the end, will be used for simulation.  
-* But this URDF Visual model is already very useful.  
-* If you have a real robot and you want to use the ROS infrastructure, you need a virtual description of how the robot is connected and where each of the sensors is in some applications. For example, if you have a camera mounted on the head of the robot, through the virtual robot description (the URDF file ), you can use the TF ROS structure to know exactly where the camera is based by only the joint sensor readings.  
+ 
+ - In this unit, you will learn how to go from a physical robot to a visual virtual model. By visual, we understand that its not a physically working simulation model. It's only the barebones of what, at the end, will be used for simulation.  
+ - But this URDF Visual model is already very useful.  
+ - If you have a real robot and you want to use the ROS infrastructure, you need a virtual description of how the robot is connected and where each of the sensors is in some applications. For example, if you have a camera mounted on the head of the robot, through the virtual robot description (the URDF file ), you can use the TF ROS structure to know exactly where the camera is based by only the joint sensor readings.  
 It also allows you to represent the robot model inside RVIZ.
 
+### ROS XML Syntax [](http://wiki.ros.org/roslaunch/XML
 
 
 
-
-# Create your first URDF Model[](https://i-08d56a1597871c9af.robotigniteacademy.com/jupyter/notebooks/Course_urdfROS_Unit_1.ipynb#Create-your-first-URDF-Model)
+# Create your first URDF Model
 
 So, you will start by creating the URDF of the robot Mira.  
 
@@ -162,7 +161,7 @@ To know how ROS will see the model and to help you position the links and joints
 
 #
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMzk5ODIyMDI0LC0xMTUxNDI2NDQyLC03MD
-I1MzEwNDYsMTExMTAxNDkzNywtMTc2MjQ0MTI4NCwtMjQ1NjQ2
-MDA5LC0xNjE4MTQ2NjA2LDE3NTIxNzkxNDNdfQ==
+eyJoaXN0b3J5IjpbLTczODY4NTUzMCwtMTE1MTQyNjQ0MiwtNz
+AyNTMxMDQ2LDExMTEwMTQ5MzcsLTE3NjI0NDEyODQsLTI0NTY0
+NjAwOSwtMTYxODE0NjYwNiwxNzUyMTc5MTQzXX0=
 -->
