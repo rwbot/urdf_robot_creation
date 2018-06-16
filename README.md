@@ -389,17 +389,22 @@ To add materials to blender, please refer to this tutorial:  [https://youtu.be/r
 
 For this tutorial, the meshes were provided in **`catkin_ws/src/my_mira_description/models/mira/meshes/`**. So all that needs to be done is to replace the geometry that are now spheres, cylinders, and so on by the `.dae` files. So 
 ```xml
-<link
-    name="head_link">
+<link name="head_link">
 ...
-                <!-- <sphere radius="0.06"/> -->
-                <mesh filename="package://my_mira_description/models/mira/meshes/mira_head_v5.dae"/>
-            </geometry>
-            <!-- <material name="white"/> -->
-        </visual>
-    </link>
+    <!-- <sphere radius="0.06"/> -->
+...
+</link>
 ```
-
+becomes 
+```xml
+<link name="head_link">
+...
+    <!-- <sphere radius="0.06"/> -->
+...
+</link>
+<mesh filename="package://my_mira_description/models/mira/meshes/mira_head_v5.dae"/>
+            </geometry>
+```
 
 
 
@@ -412,10 +417,10 @@ For this tutorial, the meshes were provided in **`catkin_ws/src/my_mira_descript
 
 #
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTEzNjk5NDAxNiwtMTA5NTcyODU4MiwtMT
-UwMDM5NTY5OCwtMjA3MDkzODQzMCwtMjAyMDkwMzQ4Miw1MzMw
-Njg4ODQsMTYxMzgyNzU0NiwxMzg5NDEzMDc3LC02NTcyNDMzNz
-YsLTExNTE0MjY0NDIsLTcwMjUzMTA0NiwxMTExMDE0OTM3LC0x
-NzYyNDQxMjg0LC0yNDU2NDYwMDksLTE2MTgxNDY2MDYsMTc1Mj
-E3OTE0M119
+eyJoaXN0b3J5IjpbLTE5OTI5MDAwMTQsLTEwOTU3Mjg1ODIsLT
+E1MDAzOTU2OTgsLTIwNzA5Mzg0MzAsLTIwMjA5MDM0ODIsNTMz
+MDY4ODg0LDE2MTM4Mjc1NDYsMTM4OTQxMzA3NywtNjU3MjQzMz
+c2LC0xMTUxNDI2NDQyLC03MDI1MzEwNDYsMTExMTAxNDkzNywt
+MTc2MjQ0MTI4NCwtMjQ1NjQ2MDA5LC0xNjE4MTQ2NjA2LDE3NT
+IxNzkxNDNdfQ==
 -->
