@@ -364,9 +364,17 @@ Note that we could have positioned the Yaw link in the center, but it's position
 
 </robot>
 ```
+And now looks like this:
+![
+](https://i-04884f1eca2d43c7f.robotigniteacademy.com/jupyter/notebooks/img/mira_simple.png)
 
+Naturally, one of the most difficult aspects was probably positioning the elements.  
+That's why it's so important to iterate step by step, and if possible, have all of the assembly measurements in blueprints, like this one:
 
+![](https://i-04884f1eca2d43c7f.robotigniteacademy.com/jupyter/notebooks/img/Medidas_Gurdy_head.PNG)
 
+This was taken from the Solid Works model of the Gurdy Robot from later in the course.  
+It's highly advisable to have a CAD model fully assembled to be able to get precise measurements on how the joints have to be positioned. Otherwise, it's an iterative slow process, as you have experienced.
 
 
 
@@ -384,10 +392,10 @@ Note that we could have positioned the Yaw link in the center, but it's position
 
 #
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTM2MzY3OTkyNiwtMTA5NTcyODU4MiwtMT
-UwMDM5NTY5OCwtMjA3MDkzODQzMCwtMjAyMDkwMzQ4Miw1MzMw
-Njg4ODQsMTYxMzgyNzU0NiwxMzg5NDEzMDc3LC02NTcyNDMzNz
-YsLTExNTE0MjY0NDIsLTcwMjUzMTA0NiwxMTExMDE0OTM3LC0x
-NzYyNDQxMjg0LC0yNDU2NDYwMDksLTE2MTgxNDY2MDYsMTc1Mj
-E3OTE0M119
+eyJoaXN0b3J5IjpbODk5ODkzMzYxLC0xMDk1NzI4NTgyLC0xNT
+AwMzk1Njk4LC0yMDcwOTM4NDMwLC0yMDIwOTAzNDgyLDUzMzA2
+ODg4NCwxNjEzODI3NTQ2LDEzODk0MTMwNzcsLTY1NzI0MzM3Ni
+wtMTE1MTQyNjQ0MiwtNzAyNTMxMDQ2LDExMTEwMTQ5MzcsLTE3
+NjI0NDEyODQsLTI0NTY0NjAwOSwtMTYxODE0NjYwNiwxNzUyMT
+c5MTQzXX0=
 -->
