@@ -188,12 +188,180 @@ This system emulates the real system, giving Roll, Pitch, and Yaw Movements.
 * The Roll link connects to the base_link and rotates around the X axis.  
 * The Pitch link connects to the base_link and rotates around the Y axis.  
 * The Yaw link connects to the base_link and rotates around the Z axis.  
+
 Using the colors that match the axis helps a lot to keep the rotating axis clear. So bear that in mind when you define these kind of links.  
 These joints will also be the ones that are actuated when we introduce the actuators and controls in the simulation.  
 Note that we could have positioned the Yaw link in the center, but it's positioned in that way to be easy to see, and to slightly emulate the real system.
 
 ### Now we can generate the whole URDF file, using only geometric shapes to represent the links.
+```xml
+<robot name="mira">
 
+    <material name="blue">
+        <color rgba="0 0 0.8 1"/>
+    </material>
+    <material name="red">
+        <color rgba="0.8 0 0 1"/>
+    </material>
+    <material name="green">
+        <color rgba="0 0.8 0 1"/>
+    </material>
+    <material name="grey">
+        <color rgba="0.75 0.75 0.75 1"/>
+    </material>
+    <material name="white">
+        <color rgba="1.0 1.0 1.0 1"/>
+    </material>
+    <material name="black">
+        <color rgba="0 0 0 1"/>
+    </material>
+
+	<!-- * * * Link Definitions * * * -->
+    <link name="base_link">
+
+        <visual>
+            <origin rpy="0.0 0 0" xyz="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.06" length="0.09"/>
+            </geometry>
+            <material name="grey"/>
+        </visual>
+	</link>
+
+
+
+    <link name="roll_M1_link">
+
+        <visual>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <geometry>
+                <cylinder length="0.005" radius="0.01"/>
+            </geometry>
+            <material name="red"/>
+        </visual>
+    </link>
+
+    <joint name="roll_joint" type="revolute">
+    	<parent link="base_link"/>
+    	<child link="roll_M1_link"/>
+        <origin xyz="0.0023 0 -0.0005" rpy="0 0 0"/>
+        <limit lower="-0.2" upper="0.2" effort="0.1" velocity="0.005"/>
+        <axis xyz="1 0 0"/>
+	</joint>
+
+
+
+    <link name="pitch_M2_link">
+
+        <visual>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <geometry>
+                <cylinder length="0.005" radius="0.01"/>
+            </geometry>
+            <material name="green"/>
+        </visual>
+    </link>
+
+
+    <joint name="pitch_joint" type="revolute">
+    	<parent link="roll_M1_link"/>
+    	<child link="pitch_M2_link"/>
+    	<origin xyz="0 0 0" rpy="0 -1.5708 0"/>
+        <limit lower="0" upper="0.44" effort="0.1" velocity="0.005"/>
+        <axis xyz="0 1 0"/>
+	</joint>
+
+
+    <link name="yaw_M3_link">
+
+        <visual>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <geometry>
+                <cylinder length="0.005" radius="0.01"/>
+            </geometry>
+            <material name="blue"/>
+        </visual>
+    </link>
+
+    <joint name="yaw_joint" type="continuous">
+    	<parent link="pitch_M2_link"/>
+    	<child link="yaw_M3_link"/>
+        <origin xyz="0.01 0 0" rpy="0 1.5708 0"/>
+        <limit effort="0.1" velocity="0.01"/>
+        <axis xyz="0 0 1"/>
+	</joint>
+
+
+    <link name="head_link">
+
+		<visual>
+            <origin rpy="0.0 0 0" xyz="0 0 0"/>
+            <geometry>
+                <sphere radius="0.06"/>
+            </geometry>
+            <material name="white"/>
+        </visual>
+	</link>
+
+
+    <joint name="base_head_joint" type="fixed">
+    	<parent link="yaw_M3_link"/>
+    	<child link="head_link"/>
+    	<origin xyz="0 0 0.06" rpy="0 0 0"/>
+	</joint>
+
+    <link name="left_eye_link">
+
+		<visual>
+            <origin rpy="0.0 0 0" xyz="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.00525" length="0.00525"/>
+            </geometry>
+            <material name="black"/>
+        </visual>
+	</link>
+
+    <link name="right_eye_link">
+
+		<visual>
+            <origin rpy="0.0 0 0" xyz="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.00525" length="0.00525"/>
+            </geometry>
+            <material name="black"/>
+        </visual>
+	</link>
+
+    <joint name="head_lefteye_joint" type="fixed">
+        <parent link="head_link"/>
+        <child link="left_eye_link"/>
+        <origin xyz="0.0095 0.057 0.0085" rpy="-1.5708 0 0"/>
+    </joint>
+
+    <joint name="head_righteye_joint" type="fixed">
+        <parent link="head_link"/>
+        <child link="right_eye_link"/>
+        <origin xyz="-0.0095 0.057 0.0085" rpy="-1.5708 0 0"/>
+    </joint>
+
+    <link name="camera_link">
+		<visual>
+            <origin rpy="0.0 0 0" xyz="0 0 0"/>
+            <geometry>
+                <box size="0.0005 0.0005 0.0005"/>
+            </geometry>
+            <material name="green"/>
+        </visual>
+	</link>
+
+    <joint name="head_camera_joint" type="fixed">
+        <parent link="head_link"/>
+        <child link="camera_link"/>
+        <origin xyz="0 0.057 0.0255" rpy="0 0 0"/>
+    </joint>
+
+</robot>
+```
 
 
 
@@ -214,7 +382,7 @@ Note that we could have positioned the Yaw link in the center, but it's position
 
 #
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTM1MDYwNzYzMiwtMTA5NTcyODU4MiwtMT
+eyJoaXN0b3J5IjpbMTM0Mzk5OTM5MywtMTA5NTcyODU4MiwtMT
 UwMDM5NTY5OCwtMjA3MDkzODQzMCwtMjAyMDkwMzQ4Miw1MzMw
 Njg4ODQsMTYxMzgyNzU0NiwxMzg5NDEzMDc3LC02NTcyNDMzNz
 YsLTExNTE0MjY0NDIsLTcwMjUzMTA0NiwxMTExMDE0OTM3LC0x
