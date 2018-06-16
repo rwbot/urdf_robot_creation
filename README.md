@@ -387,23 +387,14 @@ To know how to import a model from a CAD system to blender and set the origin, p
 To correctly set the units in blender and other CAD techniques in Blender, this site is great:  [http://www.rab3d.com/tut_blen_2-6x_608-1.php](http://www.rab3d.com/tut_blen_2-6x_608-1.php)  
 To add materials to blender, please refer to this tutorial:  [https://youtu.be/rRdKj33Keec](https://youtu.be/rRdKj33Keec)
 
-For this tutorial, the meshes were provided in **`catkin_ws/src/my_mira_description/models/mira/meshes/`**. So all that needs to be done is to replace the geometry that are now spheres, cylinders, and so on by the `.dae` files. So 
+For this tutorial, the meshes were provided in **`catkin_ws/src/my_mira_description/models/mira/meshes/`**. So all that needs to be done is to replace the geometry that are now spheres, cylinders, and so on by the `.dae` files like:
 ```xml
 <link name="head_link">
 ...
     <!-- <sphere radius="0.06"/> -->
+    <mesh filename="package://my_mira_description/models/mira/meshes/mira_head_v5.dae"/>
 ...
 </link>
-```
-becomes 
-```xml
-<link name="head_link">
-...
-    <!-- <sphere radius="0.06"/> -->
-...
-</link>
-<mesh filename="package://my_mira_description/models/mira/meshes/mira_head_v5.dae"/>
-            </geometry>
 ```
 
 
@@ -417,10 +408,10 @@ becomes
 
 #
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE5OTI5MDAwMTQsLTEwOTU3Mjg1ODIsLT
-E1MDAzOTU2OTgsLTIwNzA5Mzg0MzAsLTIwMjA5MDM0ODIsNTMz
-MDY4ODg0LDE2MTM4Mjc1NDYsMTM4OTQxMzA3NywtNjU3MjQzMz
-c2LC0xMTUxNDI2NDQyLC03MDI1MzEwNDYsMTExMTAxNDkzNywt
-MTc2MjQ0MTI4NCwtMjQ1NjQ2MDA5LC0xNjE4MTQ2NjA2LDE3NT
-IxNzkxNDNdfQ==
+eyJoaXN0b3J5IjpbLTI1MTkwMDIxNywtMTA5NTcyODU4MiwtMT
+UwMDM5NTY5OCwtMjA3MDkzODQzMCwtMjAyMDkwMzQ4Miw1MzMw
+Njg4ODQsMTYxMzgyNzU0NiwxMzg5NDEzMDc3LC02NTcyNDMzNz
+YsLTExNTE0MjY0NDIsLTcwMjUzMTA0NiwxMTExMDE0OTM3LC0x
+NzYyNDQxMjg0LC0yNDU2NDYwMDksLTE2MTgxNDY2MDYsMTc1Mj
+E3OTE0M119
 -->
