@@ -374,10 +374,18 @@ That's why it's so important to iterate step by step, and if possible, have all 
 ![](https://i-04884f1eca2d43c7f.robotigniteacademy.com/jupyter/notebooks/img/Medidas_Gurdy_head.PNG)
 
 This was taken from the Solid Works model of the Gurdy Robot from later in the course.  
-It's highly advisable to have a CAD model fully assembled to be able to get precise measurements on how the joints have to be positioned. Otherwise, it's an iterative slow process, as you have experienced.
+**It's highly advisable to have a CAD model fully assembled to be able to get precise measurements on how the joints have to be positioned. Otherwise, it's an iterative slow process.**
 
+## 5. Importing 3D CAD Models into Gazebo
+This is a very wide topic and there are many ways of doing it. Here you will learn just the basic elements needed for correctly importing 3D models.  
+-   When using a CAD tool, the final models have to be saved in STL format or Dae format. SolidWorks, for example, gives the option of STL. The only advantage with DAE is that DAE saves color information. But that's something that can be added afterwards in Blender.
+-   Import the STL of the DAE models into Blender. Here you will have to set the origin of the model and the units. This is absolutely vital. The setting of the axis will determine how difficult it is to create the URDF model. As for the units, having a 10-foot high Mira Robot is not very realistic, apart from the effects on the inertias afterwards.
+-   Once you have the axis and units set up, you can add a material to the blender model to add color.
+-   Once done, you export it to dae format. Sometimes, blender doesn't save properly the first time, so you will have to import the new dae into blender again in an empty scene and then export it again to dae.
 
-
+To know how to import a model from a CAD system to blender and set the origin, please have a look at our video tutorial on this matter:[https://youtu.be/aP4sDyrRzpU](https://youtu.be/aP4sDyrRzpU)  
+To correctly set the units in blender and other CAD techniques in Blender, this site is great:  [http://www.rab3d.com/tut_blen_2-6x_608-1.php](http://www.rab3d.com/tut_blen_2-6x_608-1.php)  
+To add materials to blender, please refer to this tutorial:  [https://youtu.be/rRdKj33Keec](https://youtu.be/rRdKj33Keec)
 
 
 
@@ -392,7 +400,7 @@ It's highly advisable to have a CAD model fully assembled to be able to get prec
 
 #
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbODk5ODkzMzYxLC0xMDk1NzI4NTgyLC0xNT
+eyJoaXN0b3J5IjpbLTcxMDU5NDA4LC0xMDk1NzI4NTgyLC0xNT
 AwMzk1Njk4LC0yMDcwOTM4NDMwLC0yMDIwOTAzNDgyLDUzMzA2
 ODg4NCwxNjEzODI3NTQ2LDEzODk0MTMwNzcsLTY1NzI0MzM3Ni
 wtMTE1MTQyNjQ0MiwtNzAyNTMxMDQ2LDExMTEwMTQ5MzcsLTE3
