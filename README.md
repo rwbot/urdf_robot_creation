@@ -173,8 +173,10 @@ As for the rpy (Roll, Pitch, and Yaw ), it's also the parent's axis that corresp
 **Yaw = Rotation in the Z axis.**
 
 ## 4. Morphology of the Robot
-
-
+he most important step in the creation of a URDF is knowing how the real robot moves.  
+You have to decide which type of joints it has and how all of the pieces are linked together.  
+In the simulation, you don't always have to mimic the exact way a robot works because you can simplify, as you do not have physical limitations.
+![enter image description here](https://i-04884f1eca2d43c7f.robotigniteacademy.com/jupyter/notebooks/img/mira_diagram.png)
 
 
 
@@ -204,10 +206,10 @@ As for the rpy (Roll, Pitch, and Yaw ), it's also the parent's axis that corresp
 
 #
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE3OTE5MDk1ODMsLTEwOTU3Mjg1ODIsLT
-E1MDAzOTU2OTgsLTIwNzA5Mzg0MzAsLTIwMjA5MDM0ODIsNTMz
-MDY4ODg0LDE2MTM4Mjc1NDYsMTM4OTQxMzA3NywtNjU3MjQzMz
-c2LC0xMTUxNDI2NDQyLC03MDI1MzEwNDYsMTExMTAxNDkzNywt
-MTc2MjQ0MTI4NCwtMjQ1NjQ2MDA5LC0xNjE4MTQ2NjA2LDE3NT
-IxNzkxNDNdfQ==
+eyJoaXN0b3J5IjpbMTc2NDc1NjE3MywtMTA5NTcyODU4MiwtMT
+UwMDM5NTY5OCwtMjA3MDkzODQzMCwtMjAyMDkwMzQ4Miw1MzMw
+Njg4ODQsMTYxMzgyNzU0NiwxMzg5NDEzMDc3LC02NTcyNDMzNz
+YsLTExNTE0MjY0NDIsLTcwMjUzMTA0NiwxMTExMDE0OTM3LC0x
+NzYyNDQxMjg0LC0yNDU2NDYwMDksLTE2MTgxNDY2MDYsMTc1Mj
+E3OTE0M119
 -->
