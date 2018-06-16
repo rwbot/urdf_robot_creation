@@ -184,9 +184,15 @@ In the simulation, you don't always have to mimic the exact way a robot works be
 ![
 ](https://i-04884f1eca2d43c7f.robotigniteacademy.com/jupyter/notebooks/img/rpy_system.png)
 
+This system emulates the real system, giving Roll, Pitch, and Yaw Movements.  
+* The Roll link connects to the base_link and rotates around the X axis.  
+* The Pitch link connects to the base_link and rotates around the Y axis.  
+* The Yaw link connects to the base_link and rotates around the Z axis.  
+Using the colors that match the axis helps a lot to keep the rotating axis clear. So bear that in mind when you define these kind of links.  
+These joints will also be the ones that are actuated when we introduce the actuators and controls in the simulation.  
+Note that we could have positioned the Yaw link in the center, but it's positioned in that way to be easy to see, and to slightly emulate the real system.
 
-
-
+### Now we can generate the whole URDF file, using only geometric shapes to represent the links.
 
 
 
@@ -208,10 +214,10 @@ In the simulation, you don't always have to mimic the exact way a robot works be
 
 #
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE5MTQ4NzQ1NzAsLTEwOTU3Mjg1ODIsLT
-E1MDAzOTU2OTgsLTIwNzA5Mzg0MzAsLTIwMjA5MDM0ODIsNTMz
-MDY4ODg0LDE2MTM4Mjc1NDYsMTM4OTQxMzA3NywtNjU3MjQzMz
-c2LC0xMTUxNDI2NDQyLC03MDI1MzEwNDYsMTExMTAxNDkzNywt
-MTc2MjQ0MTI4NCwtMjQ1NjQ2MDA5LC0xNjE4MTQ2NjA2LDE3NT
-IxNzkxNDNdfQ==
+eyJoaXN0b3J5IjpbMTM1MDYwNzYzMiwtMTA5NTcyODU4MiwtMT
+UwMDM5NTY5OCwtMjA3MDkzODQzMCwtMjAyMDkwMzQ4Miw1MzMw
+Njg4ODQsMTYxMzgyNzU0NiwxMzg5NDEzMDc3LC02NTcyNDMzNz
+YsLTExNTE0MjY0NDIsLTcwMjUzMTA0NiwxMTExMDE0OTM3LC0x
+NzYyNDQxMjg0LC0yNDU2NDYwMDksLTE2MTgxNDY2MDYsMTc1Mj
+E3OTE0M119
 -->
