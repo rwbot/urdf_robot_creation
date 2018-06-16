@@ -65,7 +65,37 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
+        camera_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        head_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        left_eye_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        pitch_M2_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        right_eye_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
         roll_M1_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        yaw_M3_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -83,9 +113,21 @@ Visualization Manager:
         All Enabled: true
         base_link:
           Value: true
+        camera_link:
+          Value: true
+        head_link:
+          Value: true
+        left_eye_link:
+          Value: true
+        pitch_M2_link:
+          Value: true
+        right_eye_link:
+          Value: true
         roll_M1_link:
           Value: true
-      Marker Scale: 1
+        yaw_M3_link:
+          Value: true
+      Marker Scale: 0.300000012
       Name: TF
       Show Arrows: true
       Show Axes: true
@@ -93,7 +135,15 @@ Visualization Manager:
       Tree:
         base_link:
           roll_M1_link:
-            {}
+            pitch_M2_link:
+              yaw_M3_link:
+                head_link:
+                  camera_link:
+                    {}
+                  left_eye_link:
+                    {}
+                  right_eye_link:
+                    {}
       Update Interval: 0
       Value: true
   Enabled: true
@@ -157,5 +207,5 @@ Window Geometry:
   Views:
     collapsed: true
   Width: 1024
-  X: 0
-  Y: 0
+  X: -1
+  Y: -20
