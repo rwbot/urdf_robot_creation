@@ -382,9 +382,13 @@ This is a very wide topic and there are many ways of doing it. Here you will lea
 -   Import the STL of the DAE models into Blender. Here you will have to set the origin of the model and the units. This is absolutely vital. The setting of the axis will determine how difficult it is to create the URDF model. As for the units, having a 10-foot high Mira Robot is not very realistic, apart from the effects on the inertias afterwards.
 -   Once you have the axis and units set up, you can add a material to the blender model to add color.
 -   Once done, you export it to dae format. Sometimes, blender doesn't save properly the first time, so you will have to import the new dae into blender again in an empty scene and then export it again to dae.
-[Tutorial: How to import a model from a CAD system to blender and set the origin](https://youtu.be/aP4sDyrRzpU)  
 
-, please refer to this tutorial:  [Tutorial: How to add materials to blender](https://youtu.be/rRdKj33Keec)
+Good resources are:
+## [To correctly set the units in blender and other CAD techniques in Blender](http://www.rab3d.com/tut_blen_2-6x_608-1.php)  
+
+## [Tutorial: How to import a model from a CAD system to blender and set the origin](https://youtu.be/aP4sDyrRzpU)  
+
+## [Tutorial: How to add materials to blender](https://youtu.be/rRdKj33Keec)
 
 For this tutorial, the meshes were provided in **`catkin_ws/src/my_mira_description/models/mira/meshes/`**
 ```
@@ -632,10 +636,10 @@ The full file will look like:
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTQ5OTQ2NywtMTA5NTcyODU4MiwtMTUwMD
-M5NTY5OCwtMjA3MDkzODQzMCwtMjAyMDkwMzQ4Miw1MzMwNjg4
-ODQsMTYxMzgyNzU0NiwxMzg5NDEzMDc3LC02NTcyNDMzNzYsLT
-ExNTE0MjY0NDIsLTcwMjUzMTA0NiwxMTExMDE0OTM3LC0xNzYy
-NDQxMjg0LC0yNDU2NDYwMDksLTE2MTgxNDY2MDYsMTc1MjE3OT
-E0M119
+eyJoaXN0b3J5IjpbODk1NDU3OTgsLTEwOTU3Mjg1ODIsLTE1MD
+AzOTU2OTgsLTIwNzA5Mzg0MzAsLTIwMjA5MDM0ODIsNTMzMDY4
+ODg0LDE2MTM4Mjc1NDYsMTM4OTQxMzA3NywtNjU3MjQzMzc2LC
+0xMTUxNDI2NDQyLC03MDI1MzEwNDYsMTExMTAxNDkzNywtMTc2
+MjQ0MTI4NCwtMjQ1NjQ2MDA5LC0xNjE4MTQ2NjA2LDE3NTIxNz
+kxNDNdfQ==
 -->
