@@ -389,8 +389,9 @@ To add materials to blender, please refer to this tutorial:  [https://youtu.be/r
 
 For this tutorial, the meshes were provided in **`catkin_ws/src/my_mira_description/models/mira/meshes/`**
 ```
-/my_mira_description/models/mira/meshes/mira_body_v3.dae
-/my_mira_description/models/mira/meshes/mira_eye_v4.dae
+mira_body_v3.dae
+mira_eye_v4.dae
+mira_head_v5.dae
 ```
  So all that needs to be done is to replace the geometry that are now spheres, cylinders, and so on by the `.dae` files like:
 ```xml
@@ -424,7 +425,7 @@ And also the physical properties will need to be adjusted using **Gazebo's** syn
 
 #
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE2OTM0Njk0NjQsLTEwOTU3Mjg1ODIsLT
+eyJoaXN0b3J5IjpbLTE3MDQ4NTYyNTQsLTEwOTU3Mjg1ODIsLT
 E1MDAzOTU2OTgsLTIwNzA5Mzg0MzAsLTIwMjA5MDM0ODIsNTMz
 MDY4ODg0LDE2MTM4Mjc1NDYsMTM4OTQxMzA3NywtNjU3MjQzMz
 c2LC0xMTUxNDI2NDQyLC03MDI1MzEwNDYsMTExMTAxNDkzNywt
