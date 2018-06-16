@@ -384,7 +384,7 @@ This is a very wide topic and there are many ways of doing it. Here you will lea
 -   Once done, you export it to dae format. Sometimes, blender doesn't save properly the first time, so you will have to import the new dae into blender again in an empty scene and then export it again to dae.
 
 Good resources are:
-## [To correctly set the units in blender and other CAD techniques in Blender](http://www.rab3d.com/tut_blen_2-6x_608-1.php)  
+## [To correctly set the units and other CAD techniques in Blender](http://www.rab3d.com/tut_blen_2-6x_608-1.php)  
 
 ## [Tutorial: How to import a model from a CAD system to blender and set the origin](https://youtu.be/aP4sDyrRzpU)  
 
@@ -636,10 +636,10 @@ The full file will look like:
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbODk1NDU3OTgsLTEwOTU3Mjg1ODIsLTE1MD
-AzOTU2OTgsLTIwNzA5Mzg0MzAsLTIwMjA5MDM0ODIsNTMzMDY4
-ODg0LDE2MTM4Mjc1NDYsMTM4OTQxMzA3NywtNjU3MjQzMzc2LC
-0xMTUxNDI2NDQyLC03MDI1MzEwNDYsMTExMTAxNDkzNywtMTc2
-MjQ0MTI4NCwtMjQ1NjQ2MDA5LC0xNjE4MTQ2NjA2LDE3NTIxNz
-kxNDNdfQ==
+eyJoaXN0b3J5IjpbLTEzNDUyOTc5NzUsLTEwOTU3Mjg1ODIsLT
+E1MDAzOTU2OTgsLTIwNzA5Mzg0MzAsLTIwMjA5MDM0ODIsNTMz
+MDY4ODg0LDE2MTM4Mjc1NDYsMTM4OTQxMzA3NywtNjU3MjQzMz
+c2LC0xMTUxNDI2NDQyLC03MDI1MzEwNDYsMTExMTAxNDkzNywt
+MTc2MjQ0MTI4NCwtMjQ1NjQ2MDA5LC0xNjE4MTQ2NjA2LDE3NT
+IxNzkxNDNdfQ==
 -->
