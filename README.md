@@ -414,7 +414,215 @@ And also the physical properties will need to be adjusted using **Gazebo's** syn
         <material>Gazebo/Red</material>
     </gazebo>
 ```
+The full file will look like:
+```xml
+<?xml version="1.0"?>
+<robot name="mira">
+    <material name="blue">
+        <color rgba="0 0 0.8 1"/>
+    </material>
+    <material name="red">
+        <color rgba="0.8 0 0 1"/>
+    </material>
+    <material name="green">
+        <color rgba="0 0.8 0 1"/>
+    </material>
+    <!-- <material name="grey">
+        <color rgba="0.75 0.75 0.75 1"/>
+    </material>
+    <material name="white">
+        <color rgba="1.0 1.0 1.0 1"/>
+    </material>
+    <material name="black">
+        <color rgba="0 0 0 1"/>
+    </material> -->
 
+    <link 
+    name="base_link">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <!-- <cylinder radius="0.06" length="0.09"/> -->
+                <mesh filename="package://my_mira_description/models/mira/meshes/mira_body_v3.dae"/>
+            </geometry>
+            <material name="grey"/>
+        </visual>
+    </link>
+    
+     <!--Joint types: revolute, continuous, prismatic, fixed, floating, planar-->
+    <joint 
+    name="roll_joint" type="revolute">
+        <parent link="base_link"/>
+        <child link="roll_M1_link"/>
+        <origin xyz="0.0023 0 -0.0005" rpy="0 0 0"/>
+        <!--lower and upper are angle limits in radians-->
+        <limit lower="-0.2" upper="0.2" effort="0.1" velocity="0.005"/>
+        <!--1 0 0 Defines X as the axis of rotation-->
+        <axis xyz="1 0 0"/>
+    </joint>
+    
+    <link 
+    name="roll_M1_link">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.01" length="0.005"/>
+            </geometry>
+            <material name="red"/>
+        </visual>
+    </link>
+
+    <!-- This is for color and physical properties in Gazebo, color won't work with the material tag in gazebo
+    only for URDF coloring -->
+    <gazebo reference="roll_M1_link">
+        <kp>1000.0</kp>
+        <kd>10.0</kd>
+        <mu1>10.0</mu1>
+        <mu2>10.0</mu2>
+        <material>Gazebo/Red</material>
+    </gazebo>
+    
+    <joint
+    name="pitch_joint" type="revolute">
+        <parent link="roll_M1_link"/>
+        <child link="pitch_M2_link"/>
+        <origin xyz="0 0 0" rpy="0 -1.5708 0"/>
+        <limit lower="0" upper="0.44" effort="0.1" velocity="0.005"/>
+        <axis xyz="0 1 0"/>
+    </joint>
+   
+    <link
+    name="pitch_M2_link">
+        <visual>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.01" length="0.005"/>
+            </geometry>
+            <material name="green"/>
+        </visual>
+    </link>
+
+    <!-- This is for color and physical properties in Gazebo, color won't work with the material tag in gazebo
+    only for URDF coloring -->
+    <gazebo reference="pitch_M2_link">
+        <kp>1000.0</kp>
+        <kd>10.0</kd>
+        <mu1>10.0</mu1>
+        <mu2>10.0</mu2>
+        <material>Gazebo/Green</material>
+    </gazebo>
+    
+    <joint
+    name="yaw_joint" type="continuous">
+        <parent link="pitch_M2_link"/>
+        <child link="yaw_M3_link"/>
+        <origin xyz="0.01 0" rpy="0 1.5708 0"/>
+        <limit effort="0.1" velocity="0.01"/>
+        <axis xyz="0 0 1"/>
+    </joint>
+
+    <link
+    name="yaw_M3_link">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.01" length="0.005"/>
+            </geometry>
+            <material name="blue"/>
+        </visual>
+    </link>
+
+    <!-- This is for color and physical properties in Gazebo, color won't work with the material tag in gazebo
+    only for URDF coloring -->
+    <gazebo reference="yaw_M3_link">
+        <kp>1000.0</kp>
+        <kd>10.0</kd>
+        <mu1>10.0</mu1>
+        <mu2>10.0</mu2>
+        <material>Gazebo/Blue</material>
+    </gazebo>
+    
+    <joint
+    name="base_head_joint" type="fixed">
+        <parent link="yaw_M3_link"/>
+        <child link="head_link"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+    </joint>
+
+    <link
+    name="head_link">
+        <visual>
+            <origin xyz="0 0 0" rpy="0.0 0 0"/>
+            <geometry>
+                <!-- <sphere radius="0.06"/> -->
+                <mesh filename="package://my_mira_description/models/mira/meshes/mira_head_v5.dae"/>
+            </geometry>
+            <!-- <material name="white"/> -->
+        </visual>
+    </link>
+    
+    <joint
+    name="head_lefteye_joint" type="fixed">
+        <parent link="head_link"/>
+        <child link="left_eye_link"/>
+        <origin xyz="0.0095 0.057 0.0085" rpy="-1.5708 0 0"/>
+    </joint>
+    
+    <link
+    name="left_eye_link">
+        <visual>
+            <origin rpy="0.0 0 0" xyz="0 0 0"/>
+            <geometry>
+                <!-- <cylinder radius="0.00525" length="0.00525"/> -->
+                <mesh filename="package://my_mira_description/models/mira/meshes/mira_eye_v4.dae"/>
+            </geometry>
+            <!-- <material name="black"/> -->
+        </visual>
+    </link>
+
+    <joint
+    name="head_righteye_joint" type="fixed">
+        <parent link="head_link"/>
+        <child link="right_eye_link"/>
+        <origin xyz="-0.0095 0.057 0.0085" rpy="-1.5708 0 0"/>
+    </joint>
+        
+    <link
+    name="right_eye_link">
+        <visual>
+            <origin rpy="0.0 0 0" xyz="0 0 0"/>
+            <geometry>
+                <!-- <cylinder radius="0.00525" length="0.00525"/> -->
+                <mesh filename="package://my_mira_description/models/mira/meshes/mira_eye_v4.dae"/>
+            </geometry>
+            <!-- <material name="black"/> -->
+        </visual>
+    </link>
+    
+    <joint
+    name="head_camera_joint" type="fixed">
+        <parent link="head_link"/>
+        <child link="camera_link"/>
+        <origin xyz="0 0.057 0.0255" rpy="0 0 0"/>
+    </joint>
+    
+    <link
+    name="camera_link">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <box size="0.0005 0.0005 0.0005"/>
+            </geometry>
+            <material name="green"/>
+        </visual>
+    </link>
+
+    <gazebo reference="camera_link">
+        <material>Gazebo/Green</material>
+    </gazebo>
+
+</robot>
+```
 
 
 
@@ -425,7 +633,7 @@ And also the physical properties will need to be adjusted using **Gazebo's** syn
 
 #
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE3MDQ4NTYyNTQsLTEwOTU3Mjg1ODIsLT
+eyJoaXN0b3J5IjpbLTE2ODY3NzczNTYsLTEwOTU3Mjg1ODIsLT
 E1MDAzOTU2OTgsLTIwNzA5Mzg0MzAsLTIwMjA5MDM0ODIsNTMz
 MDY4ODg0LDE2MTM4Mjc1NDYsMTM4OTQxMzA3NywtNjU3MjQzMz
 c2LC0xMTUxNDI2NDQyLC03MDI1MzEwNDYsMTExMTAxNDkzNywt
