@@ -162,8 +162,9 @@ $ urdf_to_graphiz mira.urdf
 ```
 ![enter image description here](https://raw.githubusercontent.com/rwbot/urdf_robot_creation/master/my_mira_description/urdf/mira%20urdf.png)
 
-
-
+## Position and Orientation
+It's based on the xyz axis of the parent frame; in this case, it's the absolute world frame because it's the first link in the URDF file. **X = RED** color AXIS, **Y = GREEN** color AXIS, and **Z = BLUE** color AXIS.  
+As for the rpy (Roll, Pitch, and Yaw ), it's also the parent's axis that corresponds to Roll = Rotation in the X axis, Pitch = Rotation in the Y axis, and Yaw = Rotation in the Z axis.
 
 
 
@@ -197,9 +198,9 @@ $ urdf_to_graphiz mira.urdf
 
 #
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE1MDAzOTU2OTgsLTIwNzA5Mzg0MzAsLT
-IwMjA5MDM0ODIsNTMzMDY4ODg0LDE2MTM4Mjc1NDYsMTM4OTQx
-MzA3NywtNjU3MjQzMzc2LC0xMTUxNDI2NDQyLC03MDI1MzEwND
-YsMTExMTAxNDkzNywtMTc2MjQ0MTI4NCwtMjQ1NjQ2MDA5LC0x
-NjE4MTQ2NjA2LDE3NTIxNzkxNDNdfQ==
+eyJoaXN0b3J5IjpbLTEwOTU3Mjg1ODIsLTE1MDAzOTU2OTgsLT
+IwNzA5Mzg0MzAsLTIwMjA5MDM0ODIsNTMzMDY4ODg0LDE2MTM4
+Mjc1NDYsMTM4OTQxMzA3NywtNjU3MjQzMzc2LC0xMTUxNDI2ND
+QyLC03MDI1MzEwNDYsMTExMTAxNDkzNywtMTc2MjQ0MTI4NCwt
+MjQ1NjQ2MDA5LC0xNjE4MTQ2NjA2LDE3NTIxNzkxNDNdfQ==
 -->
