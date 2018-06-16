@@ -387,7 +387,10 @@ To know how to import a model from a CAD system to blender and set the origin, p
 To correctly set the units in blender and other CAD techniques in Blender, this site is great:  [http://www.rab3d.com/tut_blen_2-6x_608-1.php](http://www.rab3d.com/tut_blen_2-6x_608-1.php)  
 To add materials to blender, please refer to this tutorial:  [https://youtu.be/rRdKj33Keec](https://youtu.be/rRdKj33Keec)
 
-For this tutorial, the meshes were provided in **`catkin_ws/src/my_mira_description/models/mira/meshes/`**. So all that needs to be done is to replace the geometry that are now spheres, cylinders, and so on by the `.dae` files.
+For this tutorial, the meshes were provided in **`catkin_ws/src/my_mira_description/models/mira/meshes/`**. So all that needs to be done is to replace the geometry that are now spheres, cylinders, and so on by the `.dae` files like:
+```xml
+
+```
 
 
 
@@ -400,7 +403,7 @@ For this tutorial, the meshes were provided in **`catkin_ws/src/my_mira_descript
 
 #
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE5OTI1NDIwMzAsLTEwOTU3Mjg1ODIsLT
+eyJoaXN0b3J5IjpbLTE3MjcxMzE3NTYsLTEwOTU3Mjg1ODIsLT
 E1MDAzOTU2OTgsLTIwNzA5Mzg0MzAsLTIwMjA5MDM0ODIsNTMz
 MDY4ODg0LDE2MTM4Mjc1NDYsMTM4OTQxMzA3NywtNjU3MjQzMz
 c2LC0xMTUxNDI2NDQyLC03MDI1MzEwNDYsMTExMTAxNDkzNywt
