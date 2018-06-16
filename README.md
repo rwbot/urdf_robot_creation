@@ -383,7 +383,7 @@ This is a very wide topic and there are many ways of doing it. Here you will lea
 -   Once you have the axis and units set up, you can add a material to the blender model to add color.
 -   Once done, you export it to dae format. Sometimes, blender doesn't save properly the first time, so you will have to import the new dae into blender again in an empty scene and then export it again to dae.
 
-To know how to import a model from a CAD system to blender and set the origin, please have a look at our video tutorial on this matter:[https://youtu.be/aP4sDyrRzpU](https://youtu.be/aP4sDyrRzpU)  
+To know how to import a model from a CAD system to blender and set the origin, please have a look at our video tutorial on this matter: [https://youtu.be/aP4sDyrRzpU](https://youtu.be/aP4sDyrRzpU)  
 To correctly set the units in blender and other CAD techniques in Blender, this site is great:  [http://www.rab3d.com/tut_blen_2-6x_608-1.php](http://www.rab3d.com/tut_blen_2-6x_608-1.php)  
 To add materials to blender, please refer to this tutorial:  [https://youtu.be/rRdKj33Keec](https://youtu.be/rRdKj33Keec)
 
@@ -400,7 +400,7 @@ To add materials to blender, please refer to this tutorial:  [https://youtu.be/r
 
 #
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTcxMDU5NDA4LC0xMDk1NzI4NTgyLC0xNT
+eyJoaXN0b3J5IjpbNDY2NTUxODI0LC0xMDk1NzI4NTgyLC0xNT
 AwMzk1Njk4LC0yMDcwOTM4NDMwLC0yMDIwOTAzNDgyLDUzMzA2
 ODg4NCwxNjEzODI3NTQ2LDEzODk0MTMwNzcsLTY1NzI0MzM3Ni
 wtMTE1MTQyNjQ0MiwtNzAyNTMxMDQ2LDExMTEwMTQ5MzcsLTE3
