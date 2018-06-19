@@ -35,7 +35,7 @@
             <origin rpy="0.0 0 0" xyz="0 0 0"/>
             <geometry>
                 <!--<cylinder radius="0.06" length="0.09"/> -->
-                <mesh filename="package://my_mira_description/models/mira/meshes/mira_body_v3.dae"/>
+                <mesh filename="package://mira_description/models/mira/meshes/mira_body_v3.dae"/>
                 <!--When i used $MODEL the inertials became extremely fucked up, and it started gaining momentum and started spinning around like a top (not in place)-->
                 <!--<mesh model="package://my_mira_description/models/mira/meshes/mira_body_v3.dae"/>-->
             </geometry>
@@ -181,7 +181,7 @@
             <origin xyz="0 0 0" rpy="0.0 0 0"/>
             <geometry>
                 <!--<sphere radius="0.06"/> -->
-                <mesh filename="package://my_mira_description/models/mira/meshes/mira_head_v5.dae"/>
+                <mesh filename="package://mira_description/models/mira/meshes/mira_head_v5.dae"/>
             </geometry>
             <!-- <material name="white"/> -->
         </visual>
@@ -204,14 +204,14 @@
             <origin rpy="0.0 0 0" xyz="0 0 0"/>
             <geometry>
                 <!--<cylinder radius="0.00525" length="0.00525"/> -->
-                <mesh filename="package://my_mira_description/models/mira/meshes/mira_eye_v4.dae"/>
+                <mesh filename="package://mira_description/models/mira/meshes/mira_eye_v4.dae"/>
             </geometry>
         </visual>
 	</link>
 	
-	<!--<gazebo reference="left_eye_link">-->
- <!--       <material>Gazebo/Green</material>-->
- <!--   </gazebo>-->
+	<gazebo reference="left_eye_link">
+        <material>Gazebo/Green</material>
+    </gazebo>
 
     <joint name="head_righteye_joint" type="fixed">
         <parent link="head_link"/>
@@ -230,10 +230,10 @@
         <visual>
             <origin rpy="0.0 0 0" xyz="0 0 0"/>
             <geometry>
-                <cylinder radius="0.00525" length="0.00525"/> 
-                <!--<mesh filename="package://my_mira_description/models/mira/meshes/mira_eye_v4.dae"/>-->
+                <!--<cylinder radius="0.00525" length="0.00525"/> -->
+                <mesh filename="package://mira_description/models/mira/meshes/mira_eye_v4.dae"/>
             </geometry>
-             <material name="green"/> 
+             <!--<material name="green"/> -->
         </visual>
     </link>
     
@@ -270,7 +270,10 @@
 
 </robot>
         
-        
+<!--
+rosservice call /gazebo/delete_model "model_name: 'mira'"
+roslaunch my_mira_description spawn_mira.launch"
+-->
         
         
 
