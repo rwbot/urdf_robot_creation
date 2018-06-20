@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<launch>
+    <include file="$(find my_mira_description)/launch/spawn_mira.launch"/>
+    <include file="$(find my_mira_description)/launch/mira_control.launch"/>
+</launch>

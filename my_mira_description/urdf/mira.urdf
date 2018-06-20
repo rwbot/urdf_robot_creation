@@ -51,6 +51,14 @@
     <!--    <material>Gazebo/Red</material>-->
     <!--</gazebo>-->
     
+    
+    <!--This activates the gazebo control plugin for the Mira namespace. This namespace will be set in the main spawn launch file.-->
+    <gazebo>
+        <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+            <robotNamespace>/mira</robotNamespace>
+        </plugin>
+    </gazebo>
+    
      <!--Joint types: revolute, continuous, prismatic, fixed, floating, planar-->
      <joint name="roll_joint" type="revolute">
      	<parent link="base_link"/>
@@ -61,6 +69,20 @@
         <!--1 0 0 Defines X as the axis of rotation-->
         <axis xyz="1 0 0"/>
     </joint>
+    
+    <!--Here you define the name of the transmission, which will have to be unique through the URDF file.-->
+    <transmission name="transmission_roll_joint">
+        <type>transmission_interface/SimpleTransmission</type>
+        <!--Here you link the joint to the transmission and select the hardware interface, which also only has an effort interface working.-->
+        <joint name="roll_joint">
+            <hardwareInterface>EffortJointInterface</hardwareInterface>
+        </joint>
+        <!--Here you set a unique name for the actuator and again select the hardware interface. As for the reduction, it's self-explanatory.-->
+        <actuator name="motor_roll_joint">
+            <hardwareInterface>EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
     
     <link name="roll_M1_link">
         <!-- Inertial for gazebo to take it into account, Put 1gr weight -->
@@ -95,6 +117,20 @@
         <limit lower="0" upper="0.44" effort="0.1" velocity="0.005"/>
         <axis xyz="0 1 0"/>
 	</joint>
+	
+	<!--Here you define the name of the transmission, which will have to be unique through the URDF file.-->
+    <transmission name="transmission_pitch_joint">
+        <type>transmission_interface/SimpleTransmission</type>
+        <!--Here you link the joint to the transmission and select the hardware interface, which also only has an effort interface working.-->
+        <joint name="pitch_joint">
+            <hardwareInterface>EffortJointInterface</hardwareInterface>
+        </joint>
+        <!--Here you set a unique name for the actuator and again select the hardware interface. As for the reduction, it's self-explanatory.-->
+        <actuator name="motor_pitch_joint">
+            <hardwareInterface>EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
    
     <link name="pitch_M2_link">
         <!-- Inertial for gazebo to take it into account, Put 1gr weight -->
@@ -129,6 +165,20 @@
         <limit effort="0.1" velocity="0.01"/>
         <axis xyz="0 0 1"/>
 	</joint>
+	
+	<!--Here you define the name of the transmission, which will have to be unique through the URDF file.-->
+    <transmission name="transmission_yaw_joint">
+        <type>transmission_interface/SimpleTransmission</type>
+        <!--Here you link the joint to the transmission and select the hardware interface, which also only has an effort interface working.-->
+        <joint name="yaw_joint">
+            <hardwareInterface>EffortJointInterface</hardwareInterface>
+        </joint>
+        <!--Here you set a unique name for the actuator and again select the hardware interface. As for the reduction, it's self-explanatory.-->
+        <actuator name="motor_yaw_joint">
+            <hardwareInterface>EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
 
     <link name="yaw_M3_link">
         <!-- Inertial for gazebo to take it into account, Put 1gr weight -->

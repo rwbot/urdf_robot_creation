@@ -1,0 +1,17 @@
+<launch>
+<!--Loading the yaml file and launching the controllers with the robot state publisher for the TF publication.    -->
+    
+    
+    <!-- Load joint controller configurations from YAML file to parameter server -->
+    <rosparam file="$(find my_mira_description)/config/mira_control.yaml" command="load"/>
+    
+    <!--Here you state that all the controllers that you defined in the yaml are active. In this case, you are only turning on the "roll_joint_position_controller" and the "joint_state_controller." When adding more controllers, just add them here.-->
+    <!-- load the controllers -->
+    <node pkg="controller_manager" name="controller_spawner" type="spawner" respawn="false" output="screen" ns="/mira" args="roll_joint_position_controller pitch_joint_position_controller yaw_joint_position_controller joint_state_controller --shutdown-timeout 3"/> 
+    
+    <!-- convert joint states to TF transforms for rviz, etc -->
+    <node pkg="robot_state_publisher" name="robot_state_publisher" type="robot_state_publisher" respawn="false" output="screen">
+      <remap from="/joint_states" to="/mira/joint_states"/>
+    </node>
+
+</launch>
