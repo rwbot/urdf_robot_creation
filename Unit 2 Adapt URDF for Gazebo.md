@@ -22,7 +22,7 @@ At the moment, your URDF Mira Robot would be a Ghost in a simulation. There is a
 ```
 We can use meshes just like for the visual tag. But this is not advised, as the physics calculations are more intensive as the mesh gets more complex.  That's why the collisions are normally basic geometric shapes, while the visuals are meshes.  Another alternative if the geometry of the contact is crucial, is to use a lower poly version of the virtual mesh. That way, the shape is maintained, but less calculation power is needed.
 
-* We will only be defining collisions for links `base_link` 
+* We will only be defining collisions for links `base_link`, `head_link` and 
 
 ## 2. Spawn a robot in Gazebo through URDF Files
 To spawn a URDF defined robot in the simulated world we need two launch files:
@@ -103,5 +103,5 @@ To spawn a URDF defined robot in the simulated world we need two launch files:
 
 #
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTQ2NTU2MDMwNywxMDAwMjg3MjZdfQ==
+eyJoaXN0b3J5IjpbMjkzNDgwNjAxLDEwMDAyODcyNl19
 -->
