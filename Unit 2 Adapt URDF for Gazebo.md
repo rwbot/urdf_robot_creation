@@ -25,12 +25,9 @@ We can use meshes just like for the visual tag. But this is not advised, as the 
 ## 2. Spawn a robot in Gazebo through URDF Files
 To spawn a URDF defined robot in the simulated world we need two launch files:
 
-**`spawn_urdf.launch`**
+**`spawn_urdf.launch`**:  This spawns the given URDF file into the given point in space if a gazebo simulation is running
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
-<!--spawns the given URDF file into the given point in space, -->
-<!--if a gazebo simulation is running.-->
-
 <launch>
     <arg name="x" default="0.0"/>
     <arg name="y" default="0.0"/>
@@ -50,7 +47,18 @@ To spawn a URDF defined robot in the simulated world we need two launch files:
 ```
 
 **`spawn_mira.launch`**
-
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+   <include file="$(find my_mira_description)/launch/spawn_urdf.launch">-->
+       <arg name="x" value="0.0"/>
+       <arg name="y" value="0.0"/>
+       <arg name="z" value="0.2"/>
+       <arg name="urdf_robot_file" value="$(find my_mira_description)/urdf/mira.urdf"/>
+       <arg name="robot_name" value="mira"/>
+   </include>
+</launch>
+```
 
 
 
@@ -93,5 +101,5 @@ To spawn a URDF defined robot in the simulated world we need two launch files:
 
 #
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNDA2NDgyMTEwLDEwMDAyODcyNl19
+eyJoaXN0b3J5IjpbLTE4MjQwNzI3MjMsMTAwMDI4NzI2XX0=
 -->
