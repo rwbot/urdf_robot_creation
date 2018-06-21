@@ -14,13 +14,13 @@ At the moment, your URDF Mira Robot would be a Ghost in a simulation. There is a
 	         <cylinder radius="0.06" length="0.09"/>
 	         <!--We can also use meshes-->
 	         <mesh filename="package://mira_description/models/mira/meshes/mira_body_v3.dae"/>
-	         
+	         <!--But the physics calculations will be more intenseive, so if using a mesh, use a low-poly version-->
 	         <mesh filename="package://mira_description/models/mira/meshes/mira_body_v3_lowpolygons.dae"/>
 	     </geometry>
 	 </collision>
 </link>
 ```
-
+We can use meshes just like for the visual tag. But this is not advised, as the physics calculations are more intensive as the mesh gets more complex.  That's why the collisions are normally basic geometric shapes, while the visuals are meshes.  Another alternative if the geometry of the contact is crucial, is to use a lower poly version of the virtual mesh. That way, the shape is maintained, but less calculation power is needed.
 
 
 
@@ -69,5 +69,5 @@ At the moment, your URDF Mira Robot would be a Ghost in a simulation. There is a
 
 #
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE1Mzg1MTI3NTAsMTAwMDI4NzI2XX0=
+eyJoaXN0b3J5IjpbLTUwODY5NDcyOSwxMDAwMjg3MjZdfQ==
 -->
