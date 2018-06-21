@@ -17,7 +17,13 @@
         <color rgba="0 0.8 0 1"/>
     </material>
 
-
+    <!--This activates the gazebo control plugin for the Mira namespace. This namespace will be set in the main spawn launch file.-->
+    <gazebo>
+        <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+            <robotNamespace>/mira</robotNamespace>
+        </plugin>
+    </gazebo>
+    
     <link 
     name="base_link">
         <inertial>
@@ -51,13 +57,7 @@
     <!--    <material>Gazebo/Red</material>-->
     <!--</gazebo>-->
     
-    
-    <!--This activates the gazebo control plugin for the Mira namespace. This namespace will be set in the main spawn launch file.-->
-    <gazebo>
-        <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
-            <robotNamespace>/mira</robotNamespace>
-        </plugin>
-    </gazebo>
+
     
      <!--Joint types: revolute, continuous, prismatic, fixed, floating, planar-->
      <joint name="roll_joint" type="revolute">
@@ -318,6 +318,46 @@
         <material>Gazebo/Green</material>
     </gazebo>
 
+    <!-- camera -->
+    <gazebo reference="camera_link">
+        <sensor type="camera" name="camera1">
+            <update_rate>15.0</update_rate>
+            <camera name="head">
+                <pose>0 0 0 0 0 1.57</pose>
+                <horizontal_fov>1.3962634</horizontal_fov>
+                <image>
+                    <width>400</width>
+                    <height>400</height>
+                    <format>R8G8B8</format>
+                </image>
+                <clip>
+                    <near>0.01</near>
+                    <far>100</far>
+                </clip>
+                <noise>
+                    <type>gaussian</type>
+                    <stddev>0.007</stddev>
+                </noise>
+            </camera>
+            
+            <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
+                <alwaysOn>true</alwaysOn>
+                <updateRate>0.0</updateRate>
+                <cameraName>mira/camera1</cameraName>
+                <imageTopicName>image_raw</imageTopicName>
+                <cameraInfoTopicName>camera_info</cameraInfoTopicName>
+                <frameName>camera_link</frameName>
+                <hackBaseline>0.07</hackBaseline>
+                <distortionK1>0.0</distortionK1>
+                <distortionK2>0.0</distortionK2>
+                <distortionK3>0.0</distortionK3>
+                <distortionT1>0.0</distortionT1>
+                <distortionT2>0.0</distortionT2>
+            </plugin>
+        </sensor>
+    </gazebo>
+
+
 </robot>
         
 <!--
@@ -325,7 +365,7 @@ rosservice call /gazebo/delete_model "model_name: 'mira'"
 roslaunch my_mira_description spawn_mira.launch"
 -->
         
-        
+
 
         
         
