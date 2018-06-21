@@ -23,8 +23,30 @@ At the moment, your URDF Mira Robot would be a Ghost in a simulation. There is a
 We can use meshes just like for the visual tag. But this is not advised, as the physics calculations are more intensive as the mesh gets more complex.  That's why the collisions are normally basic geometric shapes, while the visuals are meshes.  Another alternative if the geometry of the contact is crucial, is to use a lower poly version of the virtual mesh. That way, the shape is maintained, but less calculation power is needed.
 
 ## 2. Spawn a robot in Gazebo through URDF Files
-To spawn
+To spawn a URDF defined robot in the simulated world we need two launch files:
+*
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!--spawns the given URDF file into the given point in space, -->
+<!--if a gazebo simulation is running.-->
 
+<launch>
+    <arg name="x" default="0.0"/>
+    <arg name="y" default="0.0"/>
+    <arg name="z" default="0.0"/>
+    
+    <arg name="urdf_robot_file" default=""/>
+    <arg name="robot_name" default=""/>
+    
+     <!--This version was created because of some errors seen in the V1 that crashed Gazebo or went too slow in spawn -->
+     <!--Load the URDF into the ROS Parameter Server -->
+    <param name="robot_description" command="cat $(arg urdf_robot_file)"/>
+    
+     <!--Run a python script to send a service call to gazebo_ros to spawn a URDF robot -->
+    <node pkg="gazebo_ros" name="urdf_spawner" type="spawn_model" respawn="false" output="screen" args="-urdf -x $(arg x) -y $(arg y) -z $(arg z) -model $(arg robot_name) -param robot_description"/>
+    
+</launch>
+```
 
 
 
@@ -69,5 +91,5 @@ To spawn
 
 #
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE5MjkwMjE3NDUsMTAwMDI4NzI2XX0=
+eyJoaXN0b3J5IjpbLTgwODc1OTIyLDEwMDAyODcyNl19
 -->
