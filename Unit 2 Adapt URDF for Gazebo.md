@@ -12,7 +12,9 @@ At the moment, your URDF Mira Robot would be a Ghost in a simulation. There is a
 	     <origin xyz="0 0 0" rpy="0 0 0"/>
 	     <geometry>
 	         <cylinder radius="0.06" length="0.09"/>
+	         <!--We can also use meshes-->
 	         <mesh filename="package://mira_description/models/mira/meshes/mira_body_v3.dae"/>
+	         
 	         <mesh filename="package://mira_description/models/mira/meshes/mira_body_v3_lowpolygons.dae"/>
 	     </geometry>
 	 </collision>
@@ -67,5 +69,5 @@ At the moment, your URDF Mira Robot would be a Ghost in a simulation. There is a
 
 #
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTM5OTg3MjUyMCwxMDAwMjg3MjZdfQ==
+eyJoaXN0b3J5IjpbLTE1Mzg1MTI3NTAsMTAwMDI4NzI2XX0=
 -->
