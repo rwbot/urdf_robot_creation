@@ -2,7 +2,25 @@ digraph G {
 node [shape=box];
 "base_link" [label="base_link"];
 "roll_M1_link" [label="roll_M1_link"];
+"pitch_M2_link" [label="pitch_M2_link"];
+"yaw_M3_link" [label="yaw_M3_link"];
+"head_link" [label="head_link"];
+"camera_link" [label="camera_link"];
+"left_eye_link" [label="left_eye_link"];
+"right_eye_link" [label="right_eye_link"];
 node [shape=ellipse, color=blue, fontcolor=blue];
 "base_link" -> "roll_joint" [label="xyz: 0.0023 0 -0.0005 \nrpy: 0 -0 0"]
 "roll_joint" -> "roll_M1_link"
+"roll_M1_link" -> "pitch_joint" [label="xyz: 0 0 0 \nrpy: 0 -1.5708 0"]
+"pitch_joint" -> "pitch_M2_link"
+"pitch_M2_link" -> "yaw_joint" [label="xyz: 0.01 0 0 \nrpy: 0 1.5708 -0"]
+"yaw_joint" -> "yaw_M3_link"
+"yaw_M3_link" -> "base_head_joint" [label="xyz: 0 0 0 \nrpy: 0 -0 0"]
+"base_head_joint" -> "head_link"
+"head_link" -> "head_camera_joint" [label="xyz: 0 0.057 0.0255 \nrpy: 0 -0 0"]
+"head_camera_joint" -> "camera_link"
+"head_link" -> "head_lefteye_joint" [label="xyz: 0.0095 0.057 0.0085 \nrpy: -1.5708 0 0"]
+"head_lefteye_joint" -> "left_eye_link"
+"head_link" -> "head_righteye_joint" [label="xyz: -0.0095 0.057 0.0085 \nrpy: -1.5708 0 0"]
+"head_righteye_joint" -> "right_eye_link"
 }
