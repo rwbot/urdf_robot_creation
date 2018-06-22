@@ -1,0 +1,108 @@
+<?xml version="1.0"?>
+<robot name="gurdy">
+
+<!--You will also need the dimensions of the the basic geometry to have some idea of the way that everything is connected, and the collision elements geometry:-->
+<!--base_link : box size="0.01 0.01 0.01"-->
+<!--head_link : cylinder radius="0.05" length="0.04"-->
+<!--upper_leg_links : cylinder length="0.06" radius="0.0025"-->
+<!--lower_leg_links : cylinder length="0.06" radius="0.0015"-->
+<!--foot_links : sphere radius="0.008"-->
+
+<!-- ################### LINK Definitions ############################# -->
+<!-- ################### LINK Definitions ############################# -->
+<!-- ################### LINK Definitions ############################# -->
+<!-- ################### LINK Definitions ############################# -->
+<!-- ################### LINK Definitions ############################# -->
+    <link name="base_link">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <box size="0.01 0.01 0.01">
+            </geometry>
+        </visual>
+    </link>
+    
+    <link name="head_link">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://my_gurdy_description/models/gurdy/meshes/gurdy_head_v2.dae">
+            </geometry>
+        </visual>
+    </link>
+    
+    <!--<link name="upperleg_M1_link">-->
+    <!--    <visual>-->
+    <!--        <origin xyz="0 0 0" rpy="0 0 0"/>-->
+    <!--        <geometry>-->
+    <!--            <>-->
+    <!--        </geometry>-->
+    <!--    </visual>-->
+    <!--</link>-->
+    
+    <!--<link name="upperleg_M2_link">-->
+    <!--    <visual>-->
+    <!--        <origin xyz="0 0 0" rpy="0 0 0"/>-->
+    <!--        <geometry>-->
+    <!--            <>-->
+    <!--        </geometry>-->
+    <!--    </visual>-->
+    <!--</link>-->
+    
+    <!--<link name="upperleg_M3_link">-->
+    <!--    <visual>-->
+    <!--        <origin xyz="0 0 0" rpy="0 0 0"/>-->
+    <!--        <geometry>-->
+    <!--            <>-->
+    <!--        </geometry>-->
+    <!--    </visual>-->
+    <!--</link>-->
+    
+
+
+
+<!-- ################### JOINT Definitions ############################# -->
+<!-- ################### JOINT Definitions ############################# -->
+<!-- ################### JOINT Definitions ############################# -->
+<!-- ################### JOINT Definitions ############################# -->
+<!-- ################### JOINT Definitions ############################# -->
+
+    <joint name="base_head_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="head_link"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <!--Rest NOT NEEDED for FIXED joint-->
+        <!--<limit lower="-0.2" upper="0.2" effort="0.1" velocity="0.005"/>-->
+        <!--<axis xyz="0 0 0"/>-->
+    </joint>
+
+    
+<!-- ################### TRANSMISSION Definitions ############################# -->
+<!-- ################### TRANSMISSION Definitions ############################# -->
+<!-- ################### TRANSMISSION Definitions ############################# -->
+<!-- ################### TRANSMISSION Definitions ############################# -->
+<!-- ################### TRANSMISSION Definitions ############################# -->
+
+
+    
+<!-- ################### MATERIALS Definitions ############################# -->
+<!-- ################### MATERIALS Definitions ############################# -->
+<!-- ################### MATERIALS Definitions ############################# -->
+<!-- ################### MATERIALS Definitions ############################# -->
+<!-- ################### MATERIALS Definitions ############################# -->
+
+
+
+<!-- ################### SENSOR Definitions ############################# -->
+<!-- ################### SENSOR Definitions ############################# -->
+<!-- ################### SENSOR Definitions ############################# -->
+<!-- ################### SENSOR Definitions ############################# -->
+<!-- ################### SENSOR Definitions ############################# -->
+
+
+
+    
+    
+    
+</robot>
+        
