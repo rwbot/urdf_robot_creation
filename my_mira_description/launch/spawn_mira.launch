@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--spawns the MIRA URDF file into the given point in space, -->
+<!--if a gazebo simulation is running.-->
 <launch>
    <include file="$(find my_mira_description)/launch/spawn_urdf.launch">-->
        <arg name="x" value="0.0"/>

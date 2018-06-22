@@ -1,6 +1,0 @@
-<launch>
-    
-    <include file="$(find my_mira_description)/launch/urdf_visualize.launch"/>
-        <arg name="model" value="$(find my_mira_description)/urdf/mira.urdf"/>
-
-</launch>
