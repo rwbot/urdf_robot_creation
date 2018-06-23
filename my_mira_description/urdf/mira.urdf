@@ -9,7 +9,7 @@
 
 <!--
 rosservice call /gazebo/delete_model "model_name: 'mira'"
-roslaunch my_mira_description spawn_mira.launch" 
+roslaunch my_mira_description spawn_mira.launch 
 -->
     
 
