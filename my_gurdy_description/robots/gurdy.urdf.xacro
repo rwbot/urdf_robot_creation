@@ -1,8 +1,6 @@
 <?xml version="1.0"?>
-<robot name="gurdy">
-
-<!--rosservice call /gazebo/delete_model "model_name: 'mira'"-->
-<!--roslaunch my_mira_description spawn_mira.launch-->
+<!-- <robot name="gurdy"> -->
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="gurdy">
 
 <!--You will also need the dimensions of the the basic geometry to have some idea of the way that everything is connected, and the collision elements geometry:-->
 <!--For base_link there is no inertia needed because its a non-functional element-->
@@ -13,7 +11,6 @@
 <!--lower_leg_links :   cylinder radius="0.0015"    length="0.06"   mass value="0.01"-->
 <!--foot_links :        sphere   radius="0.008"                     mass value="0.01"-->
 
-
 <!--Friction is vital in the foot links. Try different values and see the effect on locomotion. These are some orientative values:-->
 <!--kp = 1000.0-->
 <!--kd = 1000.0-->
@@ -22,6 +19,51 @@
 
 <!--PID are tricky. Use rqt_reconfigure to get correct values. These are some orientative values:-->
 <!--{p: 3.0, i: 1.0, d: 0.0}-->
+
+<!-- ################### XACRO Definitions ############################# -->
+<!-- ################### XACRO Definitions ############################# -->
+<!-- ################### XACRO Definitions ############################# -->
+<!-- ################### XACRO Definitions ############################# -->
+<!-- ################### XACRO Definitions ############################# -->
+
+<!-- MUST ALWAYS GO BEFORE XACRO DEFINITIONS -->
+<gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+        <robotNamespace>/gurdy</robotNamespace>
+    </plugin>
+</gazebo>
+
+<xacro:property name="m" value="0.01"/>
+<xacro:property name="head_radius" value="0.05"/>
+<xacro:property name="head_length" value="0.04"/>
+<xacro:property name="head_z_origin" value="0.02"/>
+
+<xacro:property name="upperleg_M1_z_origin" value="0.02"/>
+<xacro:property name="upperleg_radius" value="0.0025"/>
+<xacro:property name="upperleg_length" value="0.06"/>
+
+<!-- You can perform the basic operations (+,-,*,/), the unary minus, and use parenthesis. This allows you to, for example, calculate the inertias based on the dimensions directly in the XACRO file. -->
+<xacro:property name="head_ixx" value="${( (m/12.0) * (3*head_radius*head_radius + head_length*head_length) )}"/>
+<!-- Another example would be symmetrically-positioned links or joints. -->
+<xacro:property name="head_iyy" value="${head_ixx}"/>
+<xacro:property name="head_izz" value="( (m*head_radius*head_radius) / (2.0) )"/>
+
+<!-- MACROS
+This is by far the most useful feature of XACROS. There are two main types of MACROS: -->
+<!-- SIMPLE MACRO -->
+<xacro:macro name="default_origin">
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+</xacro:macro>
+<xacro:macro name="visual_origin">
+    <xacro:default_origin/>
+</xacro:macro>
+
+<!-- PARAMETERISED MACRO -->
+<xacro:property name="" value=""/>
+<xacro:property name="" value=""/>
+<xacro:property name="" value=""/>
+
+
 
 
 <!-- ################### LINK Definitions ############################# -->
@@ -38,13 +80,13 @@
         <!--    <inertia ixx="1.66666666667e-08" ixy="0.0" ixz="0.0" iyy="1.66666666667e-08" iyz="0.0" izz="1.66666666667e-08"/>-->
         <!--</inertial>-->
         <collision>
-            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <xacro:default_origin/>
             <geometry>
                 <box size="0.01 0.01 0.01"/>
             </geometry>
         </collision>
         <visual>
-            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <xacro:visual_origin/>
             <geometry>
                 <box size="0.01 0.01 0.01"/>
             </geometry>
@@ -53,19 +95,20 @@
     
             <link name="head_link">
                 <inertial>
-                    <origin xyz="0 0 0.02" rpy="0 0 0"/>
-                    <mass value="0.01"/>
-                    <inertia ixx="7.58333333333e-06" ixy="0.0" ixz="0.0" iyy="7.58333333333e-06" iyz="0.0" izz="1.25e-05"/>
+                    <origin xyz="0 0 ${head_z_origin}" rpy="0 0 0"/>
+                    <mass value="${m}"/>
+                    <!-- <inertia ixx="7.58333333333e-06" ixy="0.0" ixz="0.0" iyy="7.58333333333e-06" iyz="0.0" izz="1.25e-05"/> -->
+                    <inertia ixx="${head_ixx}" ixy="0.0" ixz="0.0" iyy="head_iyy" iyz="0.0" izz="head_izz"/>
                 </inertial>
                 <collision>
-                    <origin xyz="0 0 0.02" rpy="0 0 0"/>
+                    <origin xyz="0 0 ${head_z_origin}" rpy="0 0 0"/>
                     <geometry>
-                        <cylinder radius="0.05" length="0.04"/>
+                        <cylinder radius="${head_radius}" length="${head_length}"/>
                         <!-- <mesh filename="package://gurdy_description/models/gurdy/meshes/gurdy_head_v2.dae"/> -->
                     </geometry>
                 </collision>
                 <visual>
-                    <origin xyz="0 0 0" rpy="0 0 0"/>
+                    <xacro:visual_origin/>
                     <geometry>
                         <mesh filename="package://gurdy_description/models/gurdy/meshes/gurdy_head_v2.dae"/>
                     </geometry>
@@ -74,21 +117,21 @@
     
                     <link name="upperleg_M1_link">
                         <inertial>
-                            <origin xyz="0 0 0.03" rpy="0 0 0"/> <!--UPPER-->
-                            <mass value="0.01"/>
+                            <origin xyz="0 0 ${upperleg_M1_z_origin}" rpy="0 0 0"/> <!--UPPER-->
+                            <mass value="${m}"/>
                             <!-- ORIGINAL value taken from Inertial_calculator.py -->
                             <!-- <inertia ixx="3.015625e-06" ixy="0.0" ixz="0.0" iyy="3.015625e-06" iyz="0.0" izz="3.125e-08"/> -->
                             <!-- SOLUTION INERTIA ++++ WAY LESS TWITCHING -->
                             <inertia ixx="3.015625e-05" ixy="0.0" ixz="0.0" iyy="3.015625e-05" iyz="0.0" izz="3.125e-07"/>
                         </inertial>
                         <collision>
-                            <origin xyz="0 0 0.03" rpy="0 0 0"/> <!--UPPER COLLISION-->
+                            <origin xyz="0 0 ${upperleg_M1_z_origin}" rpy="0 0 0"/> <!--UPPER COLLISION-->
                             <geometry>
-                                <cylinder radius="0.0025" length="0.06"/>
+                                <cylinder radius="${upperleg_radius}" length="${upperleg_length}"/>
                             </geometry>
                         </collision>
                         <visual>
-                            <origin xyz="0 0 0" rpy="0 0 0"/>
+                            <xacro:visual_origin/>
                             <geometry>
                                 <mesh filename="package://gurdy_description/models/gurdy/meshes/gurdy_higherleg_v2.dae"/>
                             </geometry>
@@ -97,21 +140,21 @@
                     
                     <link name="upperleg_M2_link">
                         <inertial>
-                            <origin xyz="0 0 0.03" rpy="0 0 0"/> <!--UPPER-->
-                            <mass value="0.01"/>
+                            <origin xyz="0 0 ${upperleg_M1_z_origin}" rpy="0 0 0"/> <!--UPPER-->
+                            <mass value="${m}"/>
                             <!-- ORIGINAL value taken from Inertial_calculator.py -->
                             <!-- <inertia ixx="3.015625e-06" ixy="0.0" ixz="0.0" iyy="3.015625e-06" iyz="0.0" izz="3.125e-08"/> -->
                             <!-- SOLUTION INERTIA ++++ WAY LESS TWITCHING -->
                             <inertia ixx="3.015625e-05" ixy="0.0" ixz="0.0" iyy="3.015625e-05" iyz="0.0" izz="3.125e-07"/>
                         </inertial>
                         <collision>
-                            <origin xyz="0 0 0.03" rpy="0 0 0"/> <!--UPPER COLLISION-->
+                            <origin xyz="0 0 ${upperleg_M1_z_origin}" rpy="0 0 0"/> <!--UPPER COLLISION-->
                             <geometry>
-                                <cylinder radius="0.0025" length="0.06"/>
+                                <cylinder radius="${upperleg_radius}" length="${upperleg_length}"/>
                             </geometry>
                         </collision>
                         <visual>
-                            <origin xyz="0 0 0" rpy="0 0 0"/>
+                            <xacro:visual_origin/>
                             <geometry>
                                 <mesh filename="package://gurdy_description/models/gurdy/meshes/gurdy_higherleg_v2.dae"/>
                             </geometry>
@@ -120,21 +163,21 @@
                     
                     <link name="upperleg_M3_link">
                         <inertial>
-                            <origin xyz="0 0 0.03" rpy="0 0 0"/> <!--UPPER-->
-                            <mass value="0.01"/>
+                            <origin xyz="0 0 ${upperleg_M1_z_origin}" rpy="0 0 0"/> <!--UPPER-->
+                            <mass value="${m}"/>
                             <!-- ORIGINAL value taken from Inertial_calculator.py -->
                             <!-- <inertia ixx="3.015625e-06" ixy="0.0" ixz="0.0" iyy="3.015625e-06" iyz="0.0" izz="3.125e-08"/> -->
                             <!-- SOLUTION INERTIA ++++ WAY LESS TWITCHING -->
                             <inertia ixx="3.015625e-05" ixy="0.0" ixz="0.0" iyy="3.015625e-05" iyz="0.0" izz="3.125e-07"/>
                         </inertial>
                         <collision>
-                            <origin xyz="0 0 0.03" rpy="0 0 0"/> <!--UPPER COLLISION-->
+                            <origin xyz="0 0 ${upperleg_M1_z_origin}" rpy="0 0 0"/> <!--UPPER COLLISION-->
                             <geometry>
-                                <cylinder radius="0.0025" length="0.06"/>
+                                <cylinder radius="${upperleg_radius}" length="${upperleg_length}"/>
                             </geometry>
                         </collision>
                         <visual>
-                            <origin xyz="0 0 0" rpy="0 0 0"/>
+                            <xacro:visual_origin/>
                             <geometry>
                                 <mesh filename="package://gurdy_description/models/gurdy/meshes/gurdy_higherleg_v2.dae"/>
                             </geometry>
@@ -144,7 +187,7 @@
                             <link name="lowerleg_M1_link">
                                 <inertial>
                                     <origin xyz="0 0 0.03" rpy="0 0 0"/> <!--LOWER-->
-                                    <mass value="0.01"/>
+                                    <mass value="${m}"/>
                                     <!-- ORIGINAL value taken from Inertial_calculator.py -->
                                     <!-- <inertia ixx="3.005625e-06" ixy="0.0" ixz="0.0" iyy="3.005625e-06" iyz="0.0" izz="1.125e-08"/> -->
                                     <!-- SOLUTION INERTIA ++++  -->
@@ -157,7 +200,7 @@
                                     </geometry>
                                 </collision>
                                 <visual>
-                                    <origin xyz="0 0 0" rpy="0 0 0"/>
+                                    <xacro:visual_origin/>
                                     <geometry>
                                         <mesh filename="package://gurdy_description/models/gurdy/meshes/gurdy_lowerleg_v2.dae"/>
                                     </geometry>
@@ -167,7 +210,7 @@
                             <link name="lowerleg_M2_link">
                                 <inertial>
                                     <origin xyz="0 0 0.03" rpy="0 0 0"/> <!--LOWER-->
-                                    <mass value="0.01"/>
+                                    <mass value="${m}"/>
                                     <!-- ORIGINAL value taken from Inertial_calculator.py -->
                                     <!-- <inertia ixx="3.005625e-06" ixy="0.0" ixz="0.0" iyy="3.005625e-06" iyz="0.0" izz="1.125e-08"/> -->
                                     <!-- SOLUTION INERTIA ++++  -->
@@ -180,7 +223,7 @@
                                     </geometry>
                                 </collision>
                                 <visual>
-                                    <origin xyz="0 0 0" rpy="0 0 0"/>
+                                    <xacro:visual_origin/>
                                     <geometry>
                                         <mesh filename="package://gurdy_description/models/gurdy/meshes/gurdy_lowerleg_v2.dae"/>
                                     </geometry>
@@ -190,7 +233,7 @@
                             <link name="lowerleg_M3_link">
                                 <inertial>
                                     <origin xyz="0 0 0.03" rpy="0 0 0"/> <!--LOWER-->
-                                    <mass value="0.01"/>
+                                    <mass value="${m}"/>
                                     <!-- ORIGINAL value taken from Inertial_calculator.py -->
                                     <!-- <inertia ixx="3.005625e-06" ixy="0.0" ixz="0.0" iyy="3.005625e-06" iyz="0.0" izz="1.125e-08"/> -->
                                     <!-- SOLUTION INERTIA ++++  -->
@@ -203,7 +246,7 @@
                                     </geometry>
                                 </collision>
                                 <visual>
-                                    <origin xyz="0 0 0" rpy="0 0 0"/>
+                                    <xacro:visual_origin/>
                                     <geometry>
                                         <mesh filename="package://gurdy_description/models/gurdy/meshes/gurdy_lowerleg_v2.dae"/>
                                     </geometry>
@@ -213,7 +256,7 @@
                                     <link name="footM1_link">
                                         <inertial>
                                             <origin xyz="0 0 0.01" rpy="0 0 0"/> <!--FOOT-->
-                                            <mass value="0.01"/>
+                                            <mass value="${m}"/>
                                             <!-- ORIGINAL value taken from Inertial_calculator.py -->
                                             <!-- <inertia ixx="2.56e-07" ixy="0.0" ixz="0.0" iyy="2.56e-07" iyz="0.0" izz="2.56e-07"/> -->
                                             <!-- SOLUTION INERTIA ++++  -->
@@ -226,7 +269,7 @@
                                             </geometry>
                                         </collision>
                                         <visual>
-                                            <origin xyz="0 0 0" rpy="0 0 0"/>
+                                            <xacro:visual_origin/>
                                             <geometry>
                                                 <sphere radius="0.008"/>
                                             </geometry>
@@ -236,7 +279,7 @@
                                     <link name="footM2_link">
                                         <inertial>
                                             <origin xyz="0 0 0.01" rpy="0 0 0"/> <!--FOOT-->
-                                            <mass value="0.01"/>
+                                            <mass value="${m}"/>
                                             <!-- ORIGINAL value taken from Inertial_calculator.py -->
                                             <!-- <inertia ixx="2.56e-07" ixy="0.0" ixz="0.0" iyy="2.56e-07" iyz="0.0" izz="2.56e-07"/> -->
                                             <!-- SOLUTION INERTIA ++++  -->
@@ -249,7 +292,7 @@
                                             </geometry>
                                         </collision>
                                         <visual>
-                                            <origin xyz="0 0 0" rpy="0 0 0"/>
+                                            <xacro:visual_origin/>
                                             <geometry>
                                                 <sphere radius="0.008"/>
                                             </geometry>
@@ -259,7 +302,7 @@
                                     <link name="footM3_link">
                                         <inertial>
                                             <origin xyz="0 0 0.01" rpy="0 0 0"/> <!--FOOT-->
-                                            <mass value="0.01"/>
+                                            <mass value="${m}"/>
                                             <!-- ORIGINAL value taken from Inertial_calculator.py -->
                                             <!-- <inertia ixx="2.56e-07" ixy="0.0" ixz="0.0" iyy="2.56e-07" iyz="0.0" izz="2.56e-07"/> -->
                                             <!-- SOLUTION INERTIA ++++  -->
@@ -272,7 +315,7 @@
                                             </geometry>
                                         </collision>
                                         <visual>
-                                            <origin xyz="0 0 0" rpy="0 0 0"/>
+                                            <xacro:visual_origin/>
                                             <geometry>
                                                 <sphere radius="0.008"/>
                                             </geometry>
@@ -389,11 +432,7 @@
 <!-- ################### TRANSMISSION Definitions ############################# -->
 <!-- ################### TRANSMISSION Definitions ############################# -->
 
-    <gazebo>
-        <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
-            <robotNamespace>/gurdy</robotNamespace>
-        </plugin>
-    </gazebo>
+    
 
             <transmission name="transmission_head_upperlegM1">
                 <type>transmission_interface/SimpleTransmission</type>
