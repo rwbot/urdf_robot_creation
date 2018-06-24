@@ -5,7 +5,7 @@
    <include file="$(find my_gurdy_description)/launch/spawn_urdf.launch">-->
        <arg name="x" value="0.0"/>
        <arg name="y" value="0.0"/>
-       <arg name="z" value="0.2"/>
+       <arg name="z" value="0.0"/>
        <arg name="urdf_robot_file" value="$(find my_gurdy_description)/urdf/gurdy.urdf"/>
        <arg name="robot_name" value="gurdy"/>
    </include>
