@@ -2,6 +2,8 @@
 
 # source /home/user/catkin_ws/src/rdsetup.sh
 
+alias xdf="rosrun xacro xacro /my_gurdy_description/robots/gurdy.urdf.xacro > /my_gurdy_description/robots/gurdy_test.urdf"
+
 alias cdc="cd ~/catkin_ws" #custom cd command that goes to catkin_ws
 alias cdcs="cd ~/catkin_ws/src" #custom cd command that goes to catkin_ws/SRC
 alias cdcmk="cdc; catkin_make; wait; source devel/setup.bash" #goes to catkin_ws, runs catkin_make, waits until it's made, then sources devel/setup.bash
