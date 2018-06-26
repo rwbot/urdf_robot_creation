@@ -2,7 +2,7 @@
 
 # source /home/user/catkin_ws/src/rdsetup.sh
 
-alias xdf="rosrun xacro xacro /my_gurdy_description/robots/gurdy.urdf.xacro > /my_gurdy_description/robots/gurdy_test.urdf"
+alias xdf="rosrun xacro xacro /my_gurdy_description/robots/gurdy.urdf.xacro > /my_gurdy_description/robots/gurdy.urdf"
 
 alias cdc="cd ~/catkin_ws" #custom cd command that goes to catkin_ws
 alias cdcs="cd ~/catkin_ws/src" #custom cd command that goes to catkin_ws/SRC
