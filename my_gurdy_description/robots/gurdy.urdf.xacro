@@ -33,20 +33,16 @@
     </plugin>
 </gazebo>
 
-<xacro:property name="m" value="0.01"/>
-<xacro:property name="head_radius" value="0.05"/>
-<xacro:property name="head_length" value="0.04"/>
-<xacro:property name="head_z_origin" value="0.02"/>
-
-<xacro:property name="upperleg_M1_z_origin" value="0.02"/>
-<xacro:property name="upperleg_radius" value="0.0025"/>
-<xacro:property name="upperleg_length" value="0.06"/>
-
 <!-- You can perform the basic operations (+,-,*,/), the unary minus, and use parenthesis. This allows you to, for example, calculate the inertias based on the dimensions directly in the XACRO file. -->
 <xacro:property name="head_ixx" value="${( (m/12.0) * (3*head_radius*head_radius + head_length*head_length) )}"/>
 <!-- Another example would be symmetrically-positioned links or joints. -->
 <xacro:property name="head_iyy" value="${head_ixx}"/>
 <xacro:property name="head_izz" value="( (m*head_radius*head_radius) / (2.0) )"/>
+
+<xacro:property name="m" value="0.01"/>
+<xacro:property name="head_radius" value="0.05"/>
+<xacro:property name="head_length" value="0.04"/>
+<xacro:property name="head_z_origin" value="0.02"/>
 
 <!-- MACROS
 This is by far the most useful feature of XACROS. There are two main types of MACROS: -->
@@ -58,10 +54,132 @@ This is by far the most useful feature of XACROS. There are two main types of MA
     <xacro:default_origin/>
 </xacro:macro>
 
+
+<!--######################## UPPER LEG ########################-->
+<xacro:property name="upper_leg_radius" value="0.0025"/>
+<xacro:property name="upper_leg_length" value="0.06"/>
+<xacro:macro name="upper_leg_origin">
+    <origin xyz="0 0 0.02" rpy="0 0 0"/> <!--UPPER-->
+</xacro:macro>
+<xacro:macro name="upper_leg_link_inertia">
+    <!-- ORIGINAL value taken from Inertial_calculator.py -->
+    <!-- <inertia ixx="3.015625e-06" ixy="0.0" ixz="0.0" iyy="3.015625e-06" iyz="0.0" izz="3.125e-08"/> -->
+    <!-- SOLUTION INERTIA ++++ WAY LESS TWITCHING -->
+    <inertia ixx="3.015625e-05" ixy="0.0" ixz="0.0" iyy="3.015625e-05" iyz="0.0" izz="3.125e-07"/>
+</xacro:macro>
+
+
 <!-- PARAMETERISED MACRO -->
-<xacro:property name="" value=""/>
-<xacro:property name="" value=""/>
-<xacro:property name="" value=""/>
+<xacro:macro name="generate_upper_leg_link" params="num">
+    <link name="upper_leg_M${num}_link"><!--UPPER-->
+        <inertial>
+            <xacro:upper_leg_origin/>
+            <mass value="${m}"/>
+            <xacro:upper_leg_link_inertia/>
+        </inertial>
+        <collision>
+            <xacro:upper_leg_origin/>
+            <geometry>
+                <cylinder radius="${upper_leg_radius}" length="${upper_leg_length}"/>
+            </geometry>
+        </collision>
+        <visual>
+            <xacro:visual_origin/>
+            <geometry>
+                <mesh filename="package://gurdy_description/models/gurdy/meshes/gurdy_higherleg_v2.dae"/>
+            </geometry>
+        </visual>
+    </link>
+</xacro:macro>
+
+
+
+<!--######################## LOWER LEG ########################-->
+<xacro:property name="lower_leg_radius" value="0.0015"/>
+<xacro:property name="lower_leg_length" value="0.06"/>
+<xacro:macro name="lower_leg_origin">
+    <origin xyz="0 0 0.03" rpy="0 0 0"/> <!--LOWER-->
+</xacro:macro>
+<xacro:macro name="lower_leg_link_inertia">
+    <!-- ORIGINAL value taken from Inertial_calculator.py -->
+    <!-- <inertia ixx="3.005625e-06" ixy="0.0" ixz="0.0" iyy="3.005625e-06" iyz="0.0" izz="1.125e-08"/> -->
+    <!-- SOLUTION INERTIA ++++  -->
+    <inertia ixx="3.005625e-05" ixy="0.0" ixz="0.0" iyy="3.005625e-05" iyz="0.0" izz="1.125e-07"/>
+</xacro:macro>
+
+<!-- PARAMETERISED MACRO -->
+<xacro:macro name="generate_lower_leg_link" params="num">
+    <link name="lower_leg_M${num}_link"><!--UPPER-->
+        <inertial>
+            <xacro:lower_leg_origin/>
+            <mass value="${m}"/>
+            <xacro:lower_leg_link_inertia/>
+        </inertial>
+        <collision>
+            <xacro:lower_leg_origin/>
+            <geometry>
+                <cylinder radius="${lower_leg_radius}" length="${lower_leg_length}"/>
+            </geometry>
+        </collision>
+        <visual>
+            <xacro:visual_origin/>
+            <geometry>
+                <mesh filename="package://gurdy_description/models/gurdy/meshes/gurdy_lowerleg_v2.dae"/>
+            </geometry>
+        </visual>
+    </link>
+</xacro:macro>
+
+
+<!--######################## FOOT ########################-->
+<xacro:property name="foot_radius" value="0.008"/>
+<xacro:macro name="foot_origin">
+    <origin xyz="0 0 0.01" rpy="0 0 0"/> <!--FOOT-->
+</xacro:macro>
+<xacro:macro name="foot_link_inertia">
+    <!-- ORIGINAL value taken from Inertial_calculator.py -->
+    <!-- <inertia ixx="2.56e-07" ixy="0.0" ixz="0.0" iyy="2.56e-07" iyz="0.0" izz="2.56e-07"/> -->
+    <!-- SOLUTION INERTIA ++++  -->
+    <inertia ixx="1.28e-06" ixy="0.0" ixz="0.0" iyy="1.28e-06" iyz="0.0" izz="1.28e-06"/>
+</xacro:macro>
+
+<!-- PARAMETERISED MACRO -->
+<xacro:macro name="generate_foot_link" params="num">
+    <link name="foot_M${num}_link"><!--UPPER-->
+        <inertial>
+            <xacro:foot_origin/>
+            <mass value="${m}"/>
+            <xacro:foot_link_inertia/>
+        </inertial>
+        <collision>
+            <xacro:foot_origin/>
+            <geometry>
+                <sphere radius="${foot_radius}"/>
+            </geometry>
+        </collision>
+        <visual>
+            <xacro:visual_origin/>
+            <geometry>
+                <sphere radius="${foot_radius}"/>
+            </geometry>
+        </visual>
+    </link>
+</xacro:macro>
+
+<!-- <xacro:macro name="generate_transmission" params="parent_link child_link link_num" >
+    <transmission name="transmission_${parent_link}_${child_link}${link_num}">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="${parent_link}_${child_link}_joint">
+            <hardwareInterface>EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="motor_${parent_link}_${child_link}">
+            <hardwareInterface>EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+</xacro:macro>
+
+<xacro:generate_transmission parent_link=""> -->
 
 
 
@@ -114,214 +232,23 @@ This is by far the most useful feature of XACROS. There are two main types of MA
                     </geometry>
                 </visual>
             </link>
+
+                    <xacro:generate_upper_leg_link num="1" />
+                    <xacro:generate_upper_leg_link num="2" />
+                    <xacro:generate_upper_leg_link num="3" />
     
-                    <link name="upperleg_M1_link">
-                        <inertial>
-                            <origin xyz="0 0 ${upperleg_M1_z_origin}" rpy="0 0 0"/> <!--UPPER-->
-                            <mass value="${m}"/>
-                            <!-- ORIGINAL value taken from Inertial_calculator.py -->
-                            <!-- <inertia ixx="3.015625e-06" ixy="0.0" ixz="0.0" iyy="3.015625e-06" iyz="0.0" izz="3.125e-08"/> -->
-                            <!-- SOLUTION INERTIA ++++ WAY LESS TWITCHING -->
-                            <inertia ixx="3.015625e-05" ixy="0.0" ixz="0.0" iyy="3.015625e-05" iyz="0.0" izz="3.125e-07"/>
-                        </inertial>
-                        <collision>
-                            <origin xyz="0 0 ${upperleg_M1_z_origin}" rpy="0 0 0"/> <!--UPPER COLLISION-->
-                            <geometry>
-                                <cylinder radius="${upperleg_radius}" length="${upperleg_length}"/>
-                            </geometry>
-                        </collision>
-                        <visual>
-                            <xacro:visual_origin/>
-                            <geometry>
-                                <mesh filename="package://gurdy_description/models/gurdy/meshes/gurdy_higherleg_v2.dae"/>
-                            </geometry>
-                        </visual>
-                    </link>
+
+                            <xacro:generate_lower_leg_link num="1" />
+                            <xacro:generate_lower_leg_link num="2" />
+                            <xacro:generate_lower_leg_link num="3" />
+
                     
-                    <link name="upperleg_M2_link">
-                        <inertial>
-                            <origin xyz="0 0 ${upperleg_M1_z_origin}" rpy="0 0 0"/> <!--UPPER-->
-                            <mass value="${m}"/>
-                            <!-- ORIGINAL value taken from Inertial_calculator.py -->
-                            <!-- <inertia ixx="3.015625e-06" ixy="0.0" ixz="0.0" iyy="3.015625e-06" iyz="0.0" izz="3.125e-08"/> -->
-                            <!-- SOLUTION INERTIA ++++ WAY LESS TWITCHING -->
-                            <inertia ixx="3.015625e-05" ixy="0.0" ixz="0.0" iyy="3.015625e-05" iyz="0.0" izz="3.125e-07"/>
-                        </inertial>
-                        <collision>
-                            <origin xyz="0 0 ${upperleg_M1_z_origin}" rpy="0 0 0"/> <!--UPPER COLLISION-->
-                            <geometry>
-                                <cylinder radius="${upperleg_radius}" length="${upperleg_length}"/>
-                            </geometry>
-                        </collision>
-                        <visual>
-                            <xacro:visual_origin/>
-                            <geometry>
-                                <mesh filename="package://gurdy_description/models/gurdy/meshes/gurdy_higherleg_v2.dae"/>
-                            </geometry>
-                        </visual>
-                    </link>
-                    
-                    <link name="upperleg_M3_link">
-                        <inertial>
-                            <origin xyz="0 0 ${upperleg_M1_z_origin}" rpy="0 0 0"/> <!--UPPER-->
-                            <mass value="${m}"/>
-                            <!-- ORIGINAL value taken from Inertial_calculator.py -->
-                            <!-- <inertia ixx="3.015625e-06" ixy="0.0" ixz="0.0" iyy="3.015625e-06" iyz="0.0" izz="3.125e-08"/> -->
-                            <!-- SOLUTION INERTIA ++++ WAY LESS TWITCHING -->
-                            <inertia ixx="3.015625e-05" ixy="0.0" ixz="0.0" iyy="3.015625e-05" iyz="0.0" izz="3.125e-07"/>
-                        </inertial>
-                        <collision>
-                            <origin xyz="0 0 ${upperleg_M1_z_origin}" rpy="0 0 0"/> <!--UPPER COLLISION-->
-                            <geometry>
-                                <cylinder radius="${upperleg_radius}" length="${upperleg_length}"/>
-                            </geometry>
-                        </collision>
-                        <visual>
-                            <xacro:visual_origin/>
-                            <geometry>
-                                <mesh filename="package://gurdy_description/models/gurdy/meshes/gurdy_higherleg_v2.dae"/>
-                            </geometry>
-                        </visual>
-                    </link>
     
-                            <link name="lowerleg_M1_link">
-                                <inertial>
-                                    <origin xyz="0 0 0.03" rpy="0 0 0"/> <!--LOWER-->
-                                    <mass value="${m}"/>
-                                    <!-- ORIGINAL value taken from Inertial_calculator.py -->
-                                    <!-- <inertia ixx="3.005625e-06" ixy="0.0" ixz="0.0" iyy="3.005625e-06" iyz="0.0" izz="1.125e-08"/> -->
-                                    <!-- SOLUTION INERTIA ++++  -->
-                                    <inertia ixx="3.005625e-05" ixy="0.0" ixz="0.0" iyy="3.005625e-05" iyz="0.0" izz="1.125e-07"/>
-                                </inertial>
-                                <collision>
-                                    <origin xyz="0 0 0.03" rpy="0 0 0"/> <!--LOWER COLLISION-->
-                                    <geometry>
-                                        <cylinder radius="0.0015" length="0.06"/>
-                                    </geometry>
-                                </collision>
-                                <visual>
-                                    <xacro:visual_origin/>
-                                    <geometry>
-                                        <mesh filename="package://gurdy_description/models/gurdy/meshes/gurdy_lowerleg_v2.dae"/>
-                                    </geometry>
-                                </visual>
-                            </link>
-                            
-                            <link name="lowerleg_M2_link">
-                                <inertial>
-                                    <origin xyz="0 0 0.03" rpy="0 0 0"/> <!--LOWER-->
-                                    <mass value="${m}"/>
-                                    <!-- ORIGINAL value taken from Inertial_calculator.py -->
-                                    <!-- <inertia ixx="3.005625e-06" ixy="0.0" ixz="0.0" iyy="3.005625e-06" iyz="0.0" izz="1.125e-08"/> -->
-                                    <!-- SOLUTION INERTIA ++++  -->
-                                    <inertia ixx="3.005625e-05" ixy="0.0" ixz="0.0" iyy="3.005625e-05" iyz="0.0" izz="1.125e-07"/>
-                                </inertial>
-                                <collision>
-                                    <origin xyz="0 0 0.03" rpy="0 0 0"/> <!--LOWER COLLISION-->
-                                    <geometry>
-                                        <cylinder radius="0.0015" length="0.06"/>
-                                    </geometry>
-                                </collision>
-                                <visual>
-                                    <xacro:visual_origin/>
-                                    <geometry>
-                                        <mesh filename="package://gurdy_description/models/gurdy/meshes/gurdy_lowerleg_v2.dae"/>
-                                    </geometry>
-                                </visual>
-                            </link>
-                            
-                            <link name="lowerleg_M3_link">
-                                <inertial>
-                                    <origin xyz="0 0 0.03" rpy="0 0 0"/> <!--LOWER-->
-                                    <mass value="${m}"/>
-                                    <!-- ORIGINAL value taken from Inertial_calculator.py -->
-                                    <!-- <inertia ixx="3.005625e-06" ixy="0.0" ixz="0.0" iyy="3.005625e-06" iyz="0.0" izz="1.125e-08"/> -->
-                                    <!-- SOLUTION INERTIA ++++  -->
-                                    <inertia ixx="3.005625e-05" ixy="0.0" ixz="0.0" iyy="3.005625e-05" iyz="0.0" izz="1.125e-07"/>
-                                </inertial>
-                                <collision>
-                                    <origin xyz="0 0 0.03" rpy="0 0 0"/> <!--LOWER COLLISION-->
-                                    <geometry>
-                                        <cylinder radius="0.0015" length="0.06"/>
-                                    </geometry>
-                                </collision>
-                                <visual>
-                                    <xacro:visual_origin/>
-                                    <geometry>
-                                        <mesh filename="package://gurdy_description/models/gurdy/meshes/gurdy_lowerleg_v2.dae"/>
-                                    </geometry>
-                                </visual>
-                            </link>
+                                    <xacro:generate_foot_link num="1" />
+                                    <xacro:generate_foot_link num="2" />
+                                    <xacro:generate_foot_link num="3" />
     
-                                    <link name="footM1_link">
-                                        <inertial>
-                                            <origin xyz="0 0 0.01" rpy="0 0 0"/> <!--FOOT-->
-                                            <mass value="${m}"/>
-                                            <!-- ORIGINAL value taken from Inertial_calculator.py -->
-                                            <!-- <inertia ixx="2.56e-07" ixy="0.0" ixz="0.0" iyy="2.56e-07" iyz="0.0" izz="2.56e-07"/> -->
-                                            <!-- SOLUTION INERTIA ++++  -->
-                                            <inertia ixx="1.28e-06" ixy="0.0" ixz="0.0" iyy="1.28e-06" iyz="0.0" izz="1.28e-06"/>
-                                        </inertial>
-                                        <collision>
-                                            <origin xyz="0 0 0.01" rpy="0 0 0"/>
-                                            <geometry>
-                                                <sphere radius="0.008"/>
-                                            </geometry>
-                                        </collision>
-                                        <visual>
-                                            <xacro:visual_origin/>
-                                            <geometry>
-                                                <sphere radius="0.008"/>
-                                            </geometry>
-                                        </visual>
-                                    </link>
-                                    
-                                    <link name="footM2_link">
-                                        <inertial>
-                                            <origin xyz="0 0 0.01" rpy="0 0 0"/> <!--FOOT-->
-                                            <mass value="${m}"/>
-                                            <!-- ORIGINAL value taken from Inertial_calculator.py -->
-                                            <!-- <inertia ixx="2.56e-07" ixy="0.0" ixz="0.0" iyy="2.56e-07" iyz="0.0" izz="2.56e-07"/> -->
-                                            <!-- SOLUTION INERTIA ++++  -->
-                                            <inertia ixx="1.28e-06" ixy="0.0" ixz="0.0" iyy="1.28e-06" iyz="0.0" izz="1.28e-06"/>
-                                        </inertial>
-                                        <collision>
-                                            <origin xyz="0 0 0.01" rpy="0 0 0"/>
-                                            <geometry>
-                                                <sphere radius="0.008"/>
-                                            </geometry>
-                                        </collision>
-                                        <visual>
-                                            <xacro:visual_origin/>
-                                            <geometry>
-                                                <sphere radius="0.008"/>
-                                            </geometry>
-                                        </visual>
-                                    </link>
-                                    
-                                    <link name="footM3_link">
-                                        <inertial>
-                                            <origin xyz="0 0 0.01" rpy="0 0 0"/> <!--FOOT-->
-                                            <mass value="${m}"/>
-                                            <!-- ORIGINAL value taken from Inertial_calculator.py -->
-                                            <!-- <inertia ixx="2.56e-07" ixy="0.0" ixz="0.0" iyy="2.56e-07" iyz="0.0" izz="2.56e-07"/> -->
-                                            <!-- SOLUTION INERTIA ++++  -->
-                                            <inertia ixx="1.28e-06" ixy="0.0" ixz="0.0" iyy="1.28e-06" iyz="0.0" izz="1.28e-06"/>
-                                        </inertial>
-                                        <collision>
-                                            <origin xyz="0 0 0.01" rpy="0 0 0"/>
-                                            <geometry>
-                                                <sphere radius="0.008"/>
-                                            </geometry>
-                                        </collision>
-                                        <visual>
-                                            <xacro:visual_origin/>
-                                            <geometry>
-                                                <sphere radius="0.008"/>
-                                            </geometry>
-                                        </visual>
-                                    </link>
-    
+                                        
 
 
 
@@ -340,9 +267,9 @@ This is by far the most useful feature of XACROS. There are two main types of MA
         <!--<axis xyz="0 0 0"/>-->
     </joint>
     
-            <joint name="head_upperlegM1_joint" type="revolute">
+            <joint name="head_upper_legM1_joint" type="revolute">
                 <parent link="head_link"/>
-                <child link="upperleg_M1_link"/>
+                <child link="upper_leg_M1_link"/>
                 <!--this is the Pitch value from the urdf to graphiz map pdf-->
                 <!--<origin xyz="-0.02165 -0.0125 -0.008" rpy="3.14159 -1.05879e-22 0.523599"/>-->
                 <!--This Pitch value is from solution-->
@@ -353,42 +280,42 @@ This is by far the most useful feature of XACROS. There are two main types of MA
                 <axis xyz="0 1 0"/>
             </joint>
             
-            <joint name="head_upperlegM2_joint" type="revolute">
+            <joint name="head_upper_legM2_joint" type="revolute">
                 <parent link="head_link"/>
-                <child link="upperleg_M2_link"/>
+                <child link="upper_leg_M2_link"/>
                 <origin xyz="0.02165 -0.0125 -0.008" rpy="3.14159 0 2.61799"/>
                 <!--Rest NOT NEEDED for FIXED joint-->
                 <limit lower="-1.57" upper="0.0" effort="1.0" velocity="0.005"/>
                 <axis xyz="0 1 0"/>
             </joint>
             
-            <joint name="head_upperlegM3_joint" type="revolute">
+            <joint name="head_upper_legM3_joint" type="revolute">
                 <parent link="head_link"/>
-                <child link="upperleg_M3_link"/>
+                <child link="upper_leg_M3_link"/>
                 <origin xyz="0 0.025 -0.008" rpy="3.14159 0 -1.5708"/>
                 <!--Rest NOT NEEDED for FIXED joint-->
                 <limit lower="-1.57" upper="0.0" effort="1.0" velocity="0.005"/>
                 <axis xyz="0 1 0"/>
             </joint>
             
-                    <joint name="upperlegM1_lowerlegM1_joint" type="revolute">
-                        <parent link="upperleg_M1_link"/>
+                    <joint name="upper_legM1_lowerlegM1_joint" type="revolute">
+                        <parent link="upper_leg_M1_link"/>
                         <child link="lowerleg_M1_link"/>
                         <origin xyz="0 0.0095 0.06" rpy="0 0 3.14159"/>
                         <limit lower="-2.65" upper="0" effort="1.0" velocity="0.005"/>
                         <axis xyz="0 1 0"/>
                     </joint>
                     
-                    <joint name="upperlegM2_lowerlegM2_joint" type="revolute">
-                        <parent link="upperleg_M2_link"/>
+                    <joint name="upper_legM2_lowerlegM2_joint" type="revolute">
+                        <parent link="upper_leg_M2_link"/>
                         <child link="lowerleg_M2_link"/>
                         <origin xyz="0 0.0095 0.06" rpy="0 0 3.14159"/>
                         <limit lower="-2.65" upper="0" effort="1.0" velocity="0.005"/>
                         <axis xyz="0 1 0"/>
                     </joint>
                     
-                    <joint name="upperlegM3_lowerlegM3_joint" type="revolute">
-                        <parent link="upperleg_M3_link"/>
+                    <joint name="upper_legM3_lowerlegM3_joint" type="revolute">
+                        <parent link="upper_leg_M3_link"/>
                         <child link="lowerleg_M3_link"/>
                         <origin xyz="0 0.0095 0.06" rpy="0 0 3.14159"/>
                         <limit lower="-2.65" upper="0" effort="1.0" velocity="0.005"/>
@@ -434,67 +361,67 @@ This is by far the most useful feature of XACROS. There are two main types of MA
 
     
 
-            <transmission name="transmission_head_upperlegM1">
+            <transmission name="transmission_head_upper_legM1">
                 <type>transmission_interface/SimpleTransmission</type>
-                <joint name="head_upperlegM1_joint">
+                <joint name="head_upper_legM1_joint">
                     <hardwareInterface>EffortJointInterface</hardwareInterface>
                 </joint>
-                <actuator name="motor_head_upperlegM1">
+                <actuator name="motor_head_upper_legM1">
                     <hardwareInterface>EffortJointInterface</hardwareInterface>
                     <mechanicalReduction>1</mechanicalReduction>
                 </actuator>
             </transmission>
 
-            <transmission name="transmission_head_upperlegM2">
+            <transmission name="transmission_head_upper_legM2">
                 <type>transmission_interface/SimpleTransmission</type>
-                <joint name="head_upperlegM2_joint">
+                <joint name="head_upper_legM2_joint">
                     <hardwareInterface>EffortJointInterface</hardwareInterface>
                 </joint>
-                <actuator name="motor_head_upperlegM2">
+                <actuator name="motor_head_upper_legM2">
                     <hardwareInterface>EffortJointInterface</hardwareInterface>
                     <mechanicalReduction>1</mechanicalReduction>
                 </actuator>
             </transmission>
 
-            <transmission name="transmission_head_upperlegM3">
+            <transmission name="transmission_head_upper_legM3">
                 <type>transmission_interface/SimpleTransmission</type>
-                <joint name="head_upperlegM3_joint">
+                <joint name="head_upper_legM3_joint">
                     <hardwareInterface>EffortJointInterface</hardwareInterface>
                 </joint>
-                <actuator name="motor_head_upperlegM3">
+                <actuator name="motor_head_upper_legM3">
                     <hardwareInterface>EffortJointInterface</hardwareInterface>
                     <mechanicalReduction>1</mechanicalReduction>
                 </actuator>
             </transmission>
 
-                    <transmission name="transmission_upperlegM1_lowerlegM1">
+                    <transmission name="transmission_upper_legM1_lowerlegM1">
                         <type>transmission_interface/SimpleTransmission</type>
-                        <joint name="upperlegM1_lowerlegM1_joint">
+                        <joint name="upper_legM1_lowerlegM1_joint">
                             <hardwareInterface>EffortJointInterface</hardwareInterface>
                         </joint>
-                        <actuator name="motor_upperlegM1_lowerlegM1">
+                        <actuator name="motor_upper_legM1_lowerlegM1">
                             <hardwareInterface>EffortJointInterface</hardwareInterface>
                             <mechanicalReduction>1</mechanicalReduction>
                         </actuator>
                     </transmission>
 
-                    <transmission name="transmission_upperlegM2_lowerlegM2">
+                    <transmission name="transmission_upper_legM2_lowerlegM2">
                         <type>transmission_interface/SimpleTransmission</type>
-                        <joint name="upperlegM2_lowerlegM2_joint">
+                        <joint name="upper_legM2_lowerlegM2_joint">
                             <hardwareInterface>EffortJointInterface</hardwareInterface>
                         </joint>
-                        <actuator name="motor_upperlegM2_lowerlegM2">
+                        <actuator name="motor_upper_legM2_lowerlegM2">
                             <hardwareInterface>EffortJointInterface</hardwareInterface>
                             <mechanicalReduction>1</mechanicalReduction>
                         </actuator>
                     </transmission>
 
-                    <transmission name="transmission_upperlegM3_lowerlegM3">
+                    <transmission name="transmission_upper_legM3_lowerlegM3">
                         <type>transmission_interface/SimpleTransmission</type>
-                        <joint name="upperlegM3_lowerlegM3_joint">
+                        <joint name="upper_legM3_lowerlegM3_joint">
                             <hardwareInterface>EffortJointInterface</hardwareInterface>
                         </joint>
-                        <actuator name="motor_upperlegM3_lowerlegM3">
+                        <actuator name="motor_upper_legM3_lowerlegM3">
                             <hardwareInterface>EffortJointInterface</hardwareInterface>
                             <mechanicalReduction>1</mechanicalReduction>
                         </actuator>

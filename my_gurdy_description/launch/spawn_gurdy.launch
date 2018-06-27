@@ -6,7 +6,8 @@
        <arg name="x" value="0.0"/>
        <arg name="y" value="0.0"/>
        <arg name="z" value="0.0"/>
-       <arg name="urdf_robot_file" value="$(find my_gurdy_description)/urdf/gurdy.urdf"/>
+       <!--<arg name="urdf_robot_file" value="$(find my_gurdy_description)/urdf/gurdy.urdf"/>-->
+       <arg name="urdf_robot_file" value="$(find my_gurdy_description)/robots/gurdy.urdf"/>
        <arg name="robot_name" value="gurdy"/>
    </include>
 </launch>
