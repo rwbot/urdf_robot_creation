@@ -30,20 +30,18 @@
       <robotNamespace>/gurdy</robotNamespace>
     </plugin>
   </gazebo>
-  <!-- <xacro:macro name="generate_transmission" params="parent_link child_link link_num" >
-    <transmission name="transmission_${parent_link}_${child_link}${link_num}">
-        <type>transmission_interface/SimpleTransmission</type>
-        <joint name="${parent_link}_${child_link}_joint">
-            <hardwareInterface>EffortJointInterface</hardwareInterface>
-        </joint>
-        <actuator name="motor_${parent_link}_${child_link}">
-            <hardwareInterface>EffortJointInterface</hardwareInterface>
-            <mechanicalReduction>1</mechanicalReduction>
-        </actuator>
-    </transmission>
-</xacro:macro>
-
-<xacro:generate_transmission parent_link=""> -->
+  <!--######################## JOINT XACROS ########################-->
+  <!--######################## JOINT XACROS ########################-->
+  <!--######################## JOINT XACROS ########################-->
+  <!--######################## JOINT XACROS ########################-->
+  <!--######################## TRANSMISSION XACROS ########################-->
+  <!--######################## TRANSMISSION XACROS ########################-->
+  <!--######################## TRANSMISSION XACROS ########################-->
+  <!--######################## TRANSMISSION XACROS ########################-->
+  <!--######################## GAZEBO REFERENCE XACROS ########################-->
+  <!--######################## GAZEBO REFERENCE XACROS ########################-->
+  <!--######################## GAZEBO REFERENCE XACROS ########################-->
+  <!--######################## GAZEBO REFERENCE XACROS ########################-->
   <!-- ################### LINK Definitions ############################# -->
   <!-- ################### LINK Definitions ############################# -->
   <!-- ################### LINK Definitions ############################# -->
@@ -89,7 +87,7 @@
       </geometry>
     </visual>
   </link>
-  <link name="upperleg_M1_link">
+  <link name="upperlegM1_link">
     <!--UPPER-->
     <inertial>
       <origin rpy="0 0 0" xyz="0 0 0.02"/>
@@ -114,7 +112,7 @@
       </geometry>
     </visual>
   </link>
-  <link name="upperleg_M2_link">
+  <link name="upperlegM2_link">
     <!--UPPER-->
     <inertial>
       <origin rpy="0 0 0" xyz="0 0 0.02"/>
@@ -139,7 +137,7 @@
       </geometry>
     </visual>
   </link>
-  <link name="upperleg_M3_link">
+  <link name="upperlegM3_link">
     <!--UPPER-->
     <inertial>
       <origin rpy="0 0 0" xyz="0 0 0.02"/>
@@ -164,7 +162,7 @@
       </geometry>
     </visual>
   </link>
-  <link name="lowerleg_M1_link">
+  <link name="lowerlegM1_link">
     <!--UPPER-->
     <inertial>
       <origin rpy="0 0 0" xyz="0 0 0.03"/>
@@ -189,7 +187,7 @@
       </geometry>
     </visual>
   </link>
-  <link name="lowerleg_M2_link">
+  <link name="lowerlegM2_link">
     <!--UPPER-->
     <inertial>
       <origin rpy="0 0 0" xyz="0 0 0.03"/>
@@ -214,7 +212,7 @@
       </geometry>
     </visual>
   </link>
-  <link name="lowerleg_M3_link">
+  <link name="lowerlegM3_link">
     <!--UPPER-->
     <inertial>
       <origin rpy="0 0 0" xyz="0 0 0.03"/>
@@ -329,7 +327,7 @@
   </joint>
   <joint name="head_upperlegM1_joint" type="revolute">
     <parent link="head_link"/>
-    <child link="upperleg_M1_link"/>
+    <child link="upperlegM1_link"/>
     <!--this is the Pitch value from the urdf to graphiz map pdf-->
     <!--<origin xyz="-0.02165 -0.0125 -0.008" rpy="3.14159 -1.05879e-22 0.523599"/>-->
     <!--This Pitch value is from solution-->
@@ -341,7 +339,7 @@
   </joint>
   <joint name="head_upperlegM2_joint" type="revolute">
     <parent link="head_link"/>
-    <child link="upperleg_M2_link"/>
+    <child link="upperlegM2_link"/>
     <origin rpy="3.14159 0 2.61799" xyz="0.02165 -0.0125 -0.008"/>
     <!--Rest NOT NEEDED for FIXED joint-->
     <limit effort="1.0" lower="-1.57" upper="0.0" velocity="0.005"/>
@@ -349,51 +347,51 @@
   </joint>
   <joint name="head_upperlegM3_joint" type="revolute">
     <parent link="head_link"/>
-    <child link="upperleg_M3_link"/>
+    <child link="upperlegM3_link"/>
     <origin rpy="3.14159 0 -1.5708" xyz="0 0.025 -0.008"/>
     <!--Rest NOT NEEDED for FIXED joint-->
     <limit effort="1.0" lower="-1.57" upper="0.0" velocity="0.005"/>
     <axis xyz="0 1 0"/>
   </joint>
   <joint name="upperlegM1_lowerlegM1_joint" type="revolute">
-    <parent link="upperleg_M1_link"/>
-    <child link="lowerleg_M1_link"/>
+    <parent link="upperlegM1_link"/>
+    <child link="lowerlegM1_link"/>
     <origin rpy="0 0 3.14159" xyz="0 0.0095 0.06"/>
     <limit effort="1.0" lower="-2.65" upper="0" velocity="0.005"/>
     <axis xyz="0 1 0"/>
   </joint>
   <joint name="upperlegM2_lowerlegM2_joint" type="revolute">
-    <parent link="upperleg_M2_link"/>
-    <child link="lowerleg_M2_link"/>
+    <parent link="upperlegM2_link"/>
+    <child link="lowerlegM2_link"/>
     <origin rpy="0 0 3.14159" xyz="0 0.0095 0.06"/>
     <limit effort="1.0" lower="-2.65" upper="0" velocity="0.005"/>
     <axis xyz="0 1 0"/>
   </joint>
   <joint name="upperlegM3_lowerlegM3_joint" type="revolute">
-    <parent link="upperleg_M3_link"/>
-    <child link="lowerleg_M3_link"/>
+    <parent link="upperlegM3_link"/>
+    <child link="lowerlegM3_link"/>
     <origin rpy="0 0 3.14159" xyz="0 0.0095 0.06"/>
     <limit effort="1.0" lower="-2.65" upper="0" velocity="0.005"/>
     <axis xyz="0 1 0"/>
   </joint>
-  <joint name="basefoot_peg_M1_basefoot_peg_M1_joint_joint" type="fixed">
-    <parent link="lowerleg_M1_link"/>
+  <joint name="lowerlegM1_footM1_joint" type="fixed">
+    <parent link="lowerlegM1_link"/>
     <child link="footM1_link"/>
     <origin rpy="0 0 0" xyz="0 0 0.06"/>
     <!--Rest NOT NEEDED for FIXED joint-->
     <!--<limit lower="-2.65" upper="0" effort="1.0" velocity="0.005"/>-->
     <!--<axis xyz="0 1 0"/>-->
   </joint>
-  <joint name="basefoot_peg_M2_basefoot_peg_M2_joint_joint" type="fixed">
-    <parent link="lowerleg_M2_link"/>
+  <joint name="lowerlegM2_footM2_joint" type="fixed">
+    <parent link="lowerlegM2_link"/>
     <child link="footM2_link"/>
     <origin rpy="0 0 0" xyz="0 0 0.06"/>
     <!--Rest NOT NEEDED for FIXED joint-->
     <!--<limit lower="-2.65" upper="0" effort="1.0" velocity="0.005"/>-->
     <!--<axis xyz="0 1 0"/>-->
   </joint>
-  <joint name="basefoot_peg_M3_basefoot_peg_M3_joint_joint" type="fixed">
-    <parent link="lowerleg_M3_link"/>
+  <joint name="lowerlegM3_footM3_joint" type="fixed">
+    <parent link="lowerlegM3_link"/>
     <child link="footM3_link"/>
     <origin rpy="0 0 0" xyz="0 0 0.06"/>
     <!--Rest NOT NEEDED for FIXED joint-->
@@ -405,71 +403,66 @@
   <!-- ################### TRANSMISSION Definitions ############################# -->
   <!-- ################### TRANSMISSION Definitions ############################# -->
   <!-- ################### TRANSMISSION Definitions ############################# -->
-  <!-- <transmission name="transmission_head_upperlegM1">
-                <type>transmission_interface/SimpleTransmission</type>
-                <joint name="head_upperlegM1_joint">
-                    <hardwareInterface>EffortJointInterface</hardwareInterface>
-                </joint>
-                <actuator name="motor_head_upperlegM1">
-                    <hardwareInterface>EffortJointInterface</hardwareInterface>
-                    <mechanicalReduction>1</mechanicalReduction>
-                </actuator>
-            </transmission>
-
-            <transmission name="transmission_head_upperlegM2">
-                <type>transmission_interface/SimpleTransmission</type>
-                <joint name="head_upperlegM2_joint">
-                    <hardwareInterface>EffortJointInterface</hardwareInterface>
-                </joint>
-                <actuator name="motor_head_upperlegM2">
-                    <hardwareInterface>EffortJointInterface</hardwareInterface>
-                    <mechanicalReduction>1</mechanicalReduction>
-                </actuator>
-            </transmission>
-
-            <transmission name="transmission_head_upperlegM3">
-                <type>transmission_interface/SimpleTransmission</type>
-                <joint name="head_upperlegM3_joint">
-                    <hardwareInterface>EffortJointInterface</hardwareInterface>
-                </joint>
-                <actuator name="motor_head_upperlegM3">
-                    <hardwareInterface>EffortJointInterface</hardwareInterface>
-                    <mechanicalReduction>1</mechanicalReduction>
-                </actuator>
-            </transmission>
-
-                    <transmission name="transmission_upperlegM1_lowerlegM1">
-                        <type>transmission_interface/SimpleTransmission</type>
-                        <joint name="upperlegM1_lowerlegM1_joint">
-                            <hardwareInterface>EffortJointInterface</hardwareInterface>
-                        </joint>
-                        <actuator name="motor_upperlegM1_lowerlegM1">
-                            <hardwareInterface>EffortJointInterface</hardwareInterface>
-                            <mechanicalReduction>1</mechanicalReduction>
-                        </actuator>
-                    </transmission>
-
-                    <transmission name="transmission_upperlegM2_lowerlegM2">
-                        <type>transmission_interface/SimpleTransmission</type>
-                        <joint name="upperlegM2_lowerlegM2_joint">
-                            <hardwareInterface>EffortJointInterface</hardwareInterface>
-                        </joint>
-                        <actuator name="motor_upperlegM2_lowerlegM2">
-                            <hardwareInterface>EffortJointInterface</hardwareInterface>
-                            <mechanicalReduction>1</mechanicalReduction>
-                        </actuator>
-                    </transmission>
-
-                    <transmission name="transmission_upperlegM3_lowerlegM3">
-                        <type>transmission_interface/SimpleTransmission</type>
-                        <joint name="upperlegM3_lowerlegM3_joint">
-                            <hardwareInterface>EffortJointInterface</hardwareInterface>
-                        </joint>
-                        <actuator name="motor_upperlegM3_lowerlegM3">
-                            <hardwareInterface>EffortJointInterface</hardwareInterface>
-                            <mechanicalReduction>1</mechanicalReduction>
-                        </actuator>
-                    </transmission> -->
+  <transmission name="transmission_head_upperlegM1">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="head_upperlegM1_joint">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor_head_upperlegM1">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <transmission name="transmission_head_upperlegM2">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="head_upperlegM2_joint">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor_head_upperlegM2">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <transmission name="transmission_head_upperlegM3">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="head_upperlegM3_joint">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor_head_upperlegM3">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <transmission name="transmission_upperlegM1_lowerlegM1">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="upperlegM1_lowerlegM1_joint">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor_upperlegM1_lowerlegM1">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <transmission name="transmission_upperlegM2_lowerlegM2">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="upperlegM2_lowerlegM2_joint">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor_upperlegM2_lowerlegM2">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <transmission name="transmission_upperlegM3_lowerlegM3">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="upperlegM3_lowerlegM3_joint">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor_upperlegM3_lowerlegM3">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
   <!-- ################### MATERIALS Definitions ############################# -->
   <!-- ################### MATERIALS Definitions ############################# -->
   <!-- ################### MATERIALS Definitions ############################# -->
@@ -479,53 +472,59 @@
     <mu1>10.0</mu1>
     <mu2>10.0</mu2>
   </gazebo>
-  <!-- This is for color and physical properties in Gazebo, color won't work with the material tag in gazebo
-                            only for URDF coloring -->
+  <!-- <material>color</material> only works for rviz URDF, not Gazebo -->
+  <!-- If 'color' param is unspecified, it defaults to White -->
   <gazebo reference="footM1_link">
     <kp>1000.0</kp>
     <kd>1000.0</kd>
     <mu1>10.0</mu1>
     <mu2>10.0</mu2>
-    <!--<material>Gazebo/Red</material>-->
     <material>Gazebo/White</material>
   </gazebo>
-  <!-- This is for color and physical properties in Gazebo, color won't work with the material tag in gazebo
-                            only for URDF coloring -->
+  <!-- <material>color</material> only works for rviz URDF, not Gazebo -->
+  <!-- If 'color' param is unspecified, it defaults to White -->
   <gazebo reference="footM2_link">
     <kp>1000.0</kp>
     <kd>1000.0</kd>
     <mu1>10.0</mu1>
     <mu2>10.0</mu2>
-    <!--<material>Gazebo/Green</material>-->
     <material>Gazebo/White</material>
   </gazebo>
-  <!-- This is for color and physical properties in Gazebo, color won't work with the material tag in gazebo
-                            only for URDF coloring -->
+  <!-- <material>color</material> only works for rviz URDF, not Gazebo -->
+  <!-- If 'color' param is unspecified, it defaults to White -->
   <gazebo reference="footM3_link">
     <kp>1000.0</kp>
     <kd>1000.0</kd>
     <mu1>10.0</mu1>
     <mu2>10.0</mu2>
-    <!--<material>Gazebo/Blue</material>-->
     <material>Gazebo/White</material>
+  </gazebo>
+  <!-- <material>color</material> only works for rviz URDF, not Gazebo -->
+  <!-- If 'color' param is unspecified, it defaults to White -->
+  <gazebo reference="footM3_link">
+    <kp>1000.0</kp>
+    <kd>1000.0</kd>
+    <mu1>10.0</mu1>
+    <mu2>10.0</mu2>
+    <material>Gazebo/Blue</material>
   </gazebo>
   <!-- ################### SENSOR Definitions ############################# -->
   <!-- ################### SENSOR Definitions ############################# -->
   <!-- ################### SENSOR Definitions ############################# -->
   <!-- ################### SENSOR Definitions ############################# -->
   <!-- ################### SENSOR Definitions ############################# -->
-  <!-- <gazebo>
-        <plugin name="gazebo_ros_imu_controller" filename="libgazebo_ros_imu.so">
-            <robotNamespace>/gurdy</robotNamespace>
-            <topicName>imu/data</topicName>
-            <serviceName>imu/service</serviceName>
-            <bodyName>base_link</bodyName>
-            <gaussianNoise>0</gaussianNoise>
-            <rpyOffsets>0 0 0</rpyOffsets>
-            <updateRate>10.0</updateRate>
-            <alwaysOn>true</alwaysOn>
-            <gaussianNoise>0</gaussianNoise>
-        </plugin>
-</gazebo> -->
+  <gazebo>
+    <plugin filename="libgazebo_ros_imu.so" name="gazebo_ros_imu_controller">
+      <robotNamespace>/gurdy</robotNamespace>
+      <topicName>imu/data</topicName>
+      <serviceName>imu/service</serviceName>
+      <bodyName>base_link</bodyName>
+      <gaussianNoise>0</gaussianNoise>
+      <rpyOffsets>0 0 0</rpyOffsets>
+      <updateRate>10.0</updateRate>
+      <alwaysOn>true</alwaysOn>
+      <gaussianNoise>0</gaussianNoise>
+    </plugin>
+  </gazebo>
 </robot>
 

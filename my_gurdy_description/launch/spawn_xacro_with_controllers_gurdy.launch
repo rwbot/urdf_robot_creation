@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<launch>
+    <include file="$(find my_gurdy_description)/launch/spawn_gurdy_xacro.launch"/>
+    <include file="$(find my_gurdy_description)/launch/gurdy_control.launch"/>
+</launch>

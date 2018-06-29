@@ -1,16 +1,16 @@
 <?xml version="1.0"?>
 <robot name="gurdy">
 
-<!--rosservice call /gazebo/delete_model "model_name: 'mira'"-->
-<!--roslaunch my_mira_description spawn_mira.launch-->
+<!--rosservice call /gazebo/deleteModel "model_name: 'mira'"-->
+<!--roslaunch myMira_description spawnMira.launch-->
 
 <!--You will also need the dimensions of the the basic geometry to have some idea of the way that everything is connected, and the collision elements geometry:-->
 <!--For base_link there is no inertia needed because its a non-functional element-->
 
-<!--base_link :         box size="0.01 0.01 0.01"                   mass=None, --> 
+<!--base_link :         box size="0.01 0.01 0.01"                   mass=None, -->
 <!--head_link :         cylinder radius="0.05"      length="0.04"   mass value="0.01"-->
-<!--upper_leg_links :   cylinder radius="0.0025"    length="0.06"   mass value="0.01"-->
-<!--lower_leg_links :   cylinder radius="0.0015"    length="0.06"   mass value="0.01"-->
+<!--upperleg_links :   cylinder radius="0.0025"    length="0.06"   mass value="0.01"-->
+<!--lowerleg_links :   cylinder radius="0.0015"    length="0.06"   mass value="0.01"-->
 <!--foot_links :        sphere   radius="0.008"                     mass value="0.01"-->
 
 
@@ -50,7 +50,7 @@
             </geometry>
         </visual>
     </link>
-    
+
             <link name="head_link">
                 <inertial>
                     <origin xyz="0 0 0.02" rpy="0 0 0"/>
@@ -71,8 +71,8 @@
                     </geometry>
                 </visual>
             </link>
-    
-                    <link name="upperleg_M1_link">
+
+                    <link name="upperlegM1_link">
                         <inertial>
                             <origin xyz="0 0 0.03" rpy="0 0 0"/> <!--UPPER-->
                             <mass value="0.01"/>
@@ -94,8 +94,8 @@
                             </geometry>
                         </visual>
                     </link>
-                    
-                    <link name="upperleg_M2_link">
+
+                    <link name="upperlegM2_link">
                         <inertial>
                             <origin xyz="0 0 0.03" rpy="0 0 0"/> <!--UPPER-->
                             <mass value="0.01"/>
@@ -117,8 +117,8 @@
                             </geometry>
                         </visual>
                     </link>
-                    
-                    <link name="upperleg_M3_link">
+
+                    <link name="upperlegM3_link">
                         <inertial>
                             <origin xyz="0 0 0.03" rpy="0 0 0"/> <!--UPPER-->
                             <mass value="0.01"/>
@@ -140,8 +140,8 @@
                             </geometry>
                         </visual>
                     </link>
-    
-                            <link name="lowerleg_M1_link">
+
+                            <link name="lowerlegM1_link">
                                 <inertial>
                                     <origin xyz="0 0 0.03" rpy="0 0 0"/> <!--LOWER-->
                                     <mass value="0.01"/>
@@ -163,8 +163,8 @@
                                     </geometry>
                                 </visual>
                             </link>
-                            
-                            <link name="lowerleg_M2_link">
+
+                            <link name="lowerlegM2_link">
                                 <inertial>
                                     <origin xyz="0 0 0.03" rpy="0 0 0"/> <!--LOWER-->
                                     <mass value="0.01"/>
@@ -186,8 +186,8 @@
                                     </geometry>
                                 </visual>
                             </link>
-                            
-                            <link name="lowerleg_M3_link">
+
+                            <link name="lowerlegM3_link">
                                 <inertial>
                                     <origin xyz="0 0 0.03" rpy="0 0 0"/> <!--LOWER-->
                                     <mass value="0.01"/>
@@ -209,7 +209,7 @@
                                     </geometry>
                                 </visual>
                             </link>
-    
+
                                     <link name="footM1_link">
                                         <inertial>
                                             <origin xyz="0 0 0.01" rpy="0 0 0"/> <!--FOOT-->
@@ -232,7 +232,7 @@
                                             </geometry>
                                         </visual>
                                     </link>
-                                    
+
                                     <link name="footM2_link">
                                         <inertial>
                                             <origin xyz="0 0 0.01" rpy="0 0 0"/> <!--FOOT-->
@@ -255,7 +255,7 @@
                                             </geometry>
                                         </visual>
                                     </link>
-                                    
+
                                     <link name="footM3_link">
                                         <inertial>
                                             <origin xyz="0 0 0.01" rpy="0 0 0"/> <!--FOOT-->
@@ -278,7 +278,7 @@
                                             </geometry>
                                         </visual>
                                     </link>
-    
+
 
 
 
@@ -296,10 +296,10 @@
         <!--<limit lower="-0.2" upper="0.2" effort="1.0" velocity="0.005"/>-->
         <!--<axis xyz="0 0 0"/>-->
     </joint>
-    
+
             <joint name="head_upperlegM1_joint" type="revolute">
                 <parent link="head_link"/>
-                <child link="upperleg_M1_link"/>
+                <child link="upperlegM1_link"/>
                 <!--this is the Pitch value from the urdf to graphiz map pdf-->
                 <!--<origin xyz="-0.02165 -0.0125 -0.008" rpy="3.14159 -1.05879e-22 0.523599"/>-->
                 <!--This Pitch value is from solution-->
@@ -309,69 +309,69 @@
                 <limit lower="-1.57" upper="0.0" effort="1.0" velocity="0.005"/>
                 <axis xyz="0 1 0"/>
             </joint>
-            
+
             <joint name="head_upperlegM2_joint" type="revolute">
                 <parent link="head_link"/>
-                <child link="upperleg_M2_link"/>
+                <child link="upperlegM2_link"/>
                 <origin xyz="0.02165 -0.0125 -0.008" rpy="3.14159 0 2.61799"/>
                 <!--Rest NOT NEEDED for FIXED joint-->
                 <limit lower="-1.57" upper="0.0" effort="1.0" velocity="0.005"/>
                 <axis xyz="0 1 0"/>
             </joint>
-            
+
             <joint name="head_upperlegM3_joint" type="revolute">
                 <parent link="head_link"/>
-                <child link="upperleg_M3_link"/>
+                <child link="upperlegM3_link"/>
                 <origin xyz="0 0.025 -0.008" rpy="3.14159 0 -1.5708"/>
                 <!--Rest NOT NEEDED for FIXED joint-->
                 <limit lower="-1.57" upper="0.0" effort="1.0" velocity="0.005"/>
                 <axis xyz="0 1 0"/>
             </joint>
-            
+
                     <joint name="upperlegM1_lowerlegM1_joint" type="revolute">
-                        <parent link="upperleg_M1_link"/>
-                        <child link="lowerleg_M1_link"/>
+                        <parent link="upperlegM1_link"/>
+                        <child link="lowerlegM1_link"/>
                         <origin xyz="0 0.0095 0.06" rpy="0 0 3.14159"/>
                         <limit lower="-2.65" upper="0" effort="1.0" velocity="0.005"/>
                         <axis xyz="0 1 0"/>
                     </joint>
-                    
+
                     <joint name="upperlegM2_lowerlegM2_joint" type="revolute">
-                        <parent link="upperleg_M2_link"/>
-                        <child link="lowerleg_M2_link"/>
+                        <parent link="upperlegM2_link"/>
+                        <child link="lowerlegM2_link"/>
                         <origin xyz="0 0.0095 0.06" rpy="0 0 3.14159"/>
                         <limit lower="-2.65" upper="0" effort="1.0" velocity="0.005"/>
                         <axis xyz="0 1 0"/>
                     </joint>
-                    
+
                     <joint name="upperlegM3_lowerlegM3_joint" type="revolute">
-                        <parent link="upperleg_M3_link"/>
-                        <child link="lowerleg_M3_link"/>
+                        <parent link="upperlegM3_link"/>
+                        <child link="lowerlegM3_link"/>
                         <origin xyz="0 0.0095 0.06" rpy="0 0 3.14159"/>
                         <limit lower="-2.65" upper="0" effort="1.0" velocity="0.005"/>
                         <axis xyz="0 1 0"/>
                     </joint>
-                    
-                            <joint name="basefoot_peg_M1_basefoot_peg_M1_joint_joint" type="fixed">
-                                <parent link="lowerleg_M1_link"/>
+
+                            <joint name="lowerlegM1_footM1_joint" type="fixed">
+                                <parent link="lowerlegM1_link"/>
                                 <child link="footM1_link"/>
                                 <origin xyz="0 0 0.06" rpy="0 0 0"/>
                                 <!--Rest NOT NEEDED for FIXED joint-->
                                 <!--<limit lower="-2.65" upper="0" effort="1.0" velocity="0.005"/>-->
                                 <!--<axis xyz="0 1 0"/>-->
                             </joint>
-                            
-                            <joint name="basefoot_peg_M2_basefoot_peg_M2_joint_joint" type="fixed">
-                                <parent link="lowerleg_M2_link"/>
+
+                            <joint name="lowerlegM2_footM2_joint" type="fixed">
+                                <parent link="lowerlegM2_link"/>
                                 <child link="footM2_link"/>
                                 <origin xyz="0 0 0.06" rpy="0 0 0"/>
                                 <!--Rest NOT NEEDED for FIXED joint-->
                                 <!--<limit lower="-2.65" upper="0" effort="1.0" velocity="0.005"/>-->
                                 <!--<axis xyz="0 1 0"/>-->
                             </joint>
-                            
-                            <joint name="basefoot_peg_M3_basefoot_peg_M3_joint_joint" type="fixed">
-                                <parent link="lowerleg_M3_link"/>
+
+                            <joint name="lowerlegM3_footM3_joint" type="fixed">
+                                <parent link="lowerlegM3_link"/>
                                 <child link="footM3_link"/>
                                 <origin xyz="0 0 0.06" rpy="0 0 0"/>
                                 <!--Rest NOT NEEDED for FIXED joint-->
@@ -382,7 +382,7 @@
 
 
 
-    
+
 <!-- ################### TRANSMISSION Definitions ############################# -->
 <!-- ################### TRANSMISSION Definitions ############################# -->
 <!-- ################### TRANSMISSION Definitions ############################# -->
@@ -461,10 +461,10 @@
                         </actuator>
                     </transmission>
 
-    
 
 
-    
+
+
 <!-- ################### MATERIALS Definitions ############################# -->
 <!-- ################### MATERIALS Definitions ############################# -->
 <!-- ################### MATERIALS Definitions ############################# -->
@@ -485,7 +485,7 @@
                                 <!--<material>Gazebo/Red</material>-->
                                 <material>Gazebo/White</material>
                             </gazebo>
-                            
+
                             <!-- This is for color and physical properties in Gazebo, color won't work with the material tag in gazebo
                             only for URDF coloring -->
                             <gazebo reference="footM2_link">
@@ -496,7 +496,7 @@
                                 <!--<material>Gazebo/Green</material>-->
                                 <material>Gazebo/White</material>
                             </gazebo>
-                            
+
                             <!-- This is for color and physical properties in Gazebo, color won't work with the material tag in gazebo
                             only for URDF coloring -->
                             <gazebo reference="footM3_link">
@@ -529,8 +529,7 @@
 </gazebo>
 
 
-    
-    
-    
+
+
+
 </robot>
-        

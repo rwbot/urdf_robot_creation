@@ -2,7 +2,7 @@
 <!--spawns the GURDY URDF file into the given point in space, -->
 <!--if a gazebo simulation is running.-->
 <launch>
-   <include file="$(find my_gurdy_description)/launch/spawn_urdf.launch">-->
+   <include file="$(find my_gurdy_description)/launch/spawn_urdf.launch">
        <arg name="x" value="0.0"/>
        <arg name="y" value="0.0"/>
        <arg name="z" value="0.0"/>

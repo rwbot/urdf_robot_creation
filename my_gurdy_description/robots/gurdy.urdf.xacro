@@ -57,7 +57,10 @@ This is by far the most useful feature of XACROS. There are two main types of MA
 </xacro:macro>
 
 
-<!--######################## UPPER LEG ########################-->
+<!--######################## UPPER LEG XACROS ########################-->
+<!--######################## UPPER LEG XACROS ########################-->
+<!--######################## UPPER LEG XACROS ########################-->
+<!--######################## UPPER LEG XACROS ########################-->
 <xacro:property name="upperleg_radius" value="0.0025"/>
 <xacro:property name="upperleg_length" value="0.06"/>
 <xacro:macro name="upperleg_origin">
@@ -73,7 +76,7 @@ This is by far the most useful feature of XACROS. There are two main types of MA
 
 <!-- PARAMETERISED MACRO -->
 <xacro:macro name="generate_upperleg_link" params="num">
-    <link name="upperleg_M${num}_link"><!--UPPER-->
+    <link name="upperlegM${num}_link"><!--UPPER-->
         <inertial>
             <xacro:upperleg_origin/>
             <mass value="${m}"/>
@@ -96,7 +99,10 @@ This is by far the most useful feature of XACROS. There are two main types of MA
 
 
 
-<!--######################## LOWER LEG ########################-->
+<!--######################## LOWER LEG XACROS ########################-->
+<!--######################## LOWER LEG XACROS ########################-->
+<!--######################## LOWER LEG XACROS ########################-->
+<!--######################## LOWER LEG XACROS ########################-->
 <xacro:property name="lowerleg_radius" value="0.0015"/>
 <xacro:property name="lowerleg_length" value="0.06"/>
 <xacro:macro name="lowerleg_origin">
@@ -111,7 +117,7 @@ This is by far the most useful feature of XACROS. There are two main types of MA
 
 <!-- PARAMETERISED MACRO -->
 <xacro:macro name="generate_lowerleg_link" params="num">
-    <link name="lowerleg_M${num}_link"><!--UPPER-->
+    <link name="lowerlegM${num}_link"><!--UPPER-->
         <inertial>
             <xacro:lowerleg_origin/>
             <mass value="${m}"/>
@@ -133,7 +139,10 @@ This is by far the most useful feature of XACROS. There are two main types of MA
 </xacro:macro>
 
 
-<!--######################## FOOT ########################-->
+<!--######################## FOOT XACROS ########################-->
+<!--######################## FOOT XACROS ########################-->
+<!--######################## FOOT XACROS ########################-->
+<!--######################## FOOT XACROS ########################-->
 <xacro:property name="foot_radius" value="0.008"/>
 <xacro:macro name="foot_origin">
     <origin xyz="0 0 0.01" rpy="0 0 0"/> <!--FOOT-->
@@ -168,22 +177,97 @@ This is by far the most useful feature of XACROS. There are two main types of MA
     </link>
 </xacro:macro>
 
-<!-- <xacro:macro name="generate_transmission" params="parent_link child_link link_num" >
-    <transmission name="transmission_${parent_link}_${child_link}${link_num}">
+<!--######################## JOINT XACROS ########################-->
+<!--######################## JOINT XACROS ########################-->
+<!--######################## JOINT XACROS ########################-->
+<!--######################## JOINT XACROS ########################-->
+
+
+<xacro:macro name="upperleg_lowerleg_joint_origin">
+    <origin xyz="0 0.0095 0.06" rpy="0 0 3.14159"/>
+</xacro:macro>
+<xacro:macro name="upperleg_lowerleg_joint_limit">
+    <limit lower="-2.65" upper="0" effort="1.0" velocity="0.005"/>
+</xacro:macro>
+<xacro:macro name="generate_upperleg_lowerleg_joint" params="num">
+    <joint name="upperlegM${num}_lowerlegM${num}_joint" type="revolute">
+        <parent link="upperlegM${num}_link"/>
+        <child link="lowerlegM${num}_link"/>
+        <xacro:upperleg_lowerleg_joint_origin/>
+        <xacro:upperleg_lowerleg_joint_limit/>
+        <axis xyz="0 1 0"/>
+    </joint>
+</xacro:macro>
+
+
+<xacro:macro name="lowerleg_foot_joint_origin">
+    <origin xyz="0 0 0.06" rpy="0 0 0"/>
+</xacro:macro>
+<xacro:macro name="generate_lowerleg_foot_joint" params="num">
+    <joint name="lowerlegM${num}_footM${num}_joint" type="fixed">
+        <parent link="lowerlegM${num}_link"/>
+        <child link="footM${num}_link"/>
+        <xacro:lowerleg_foot_joint_origin/>
+        <!--Rest NOT NEEDED for FIXED joint-->
+        <!--<limit lower="-2.65" upper="0" effort="1.0" velocity="0.005"/>-->
+        <!--<axis xyz="0 1 0"/>-->
+    </joint>
+</xacro:macro>
+
+<!--######################## TRANSMISSION XACROS ########################-->
+<!--######################## TRANSMISSION XACROS ########################-->
+<!--######################## TRANSMISSION XACROS ########################-->
+<!--######################## TRANSMISSION XACROS ########################-->
+
+<xacro:macro name="generate_head_upperleg_transmission" params="num" >
+    <transmission name="transmission_head_upperlegM${num}">
         <type>transmission_interface/SimpleTransmission</type>
-        <joint name="${parent_link}_${child_link}_joint">
+        <joint name="head_upperlegM${num}_joint">
             <hardwareInterface>EffortJointInterface</hardwareInterface>
         </joint>
-        <actuator name="motor_${parent_link}_${child_link}">
+        <actuator name="motor_head_upperlegM${num}">
             <hardwareInterface>EffortJointInterface</hardwareInterface>
             <mechanicalReduction>1</mechanicalReduction>
         </actuator>
     </transmission>
 </xacro:macro>
 
-<xacro:generate_transmission parent_link=""> -->
+<xacro:macro name="generate_upperleg_lowerleg_transmission" params="num" >
+    <transmission name="transmission_upperlegM${num}_lowerlegM${num}">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="upperlegM${num}_lowerlegM${num}_joint">
+            <hardwareInterface>EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="motor_upperlegM${num}_lowerlegM${num}">
+            <hardwareInterface>EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+</xacro:macro>
 
 
+<!--######################## GAZEBO REFERENCE XACROS ########################-->
+<!--######################## GAZEBO REFERENCE XACROS ########################-->
+<!--######################## GAZEBO REFERENCE XACROS ########################-->
+<!--######################## GAZEBO REFERENCE XACROS ########################-->
+
+<xacro:macro name="generate_foot_gazebo_reference" params="num color=White">
+    <!-- <material>color</material> only works for rviz URDF, not Gazebo -->
+    <!-- If 'color' param is unspecified, it defaults to White -->
+        <gazebo reference="footM${num}_link">
+        <kp>1000.0</kp>
+        <kd>1000.0</kd>
+        <mu1>10.0</mu1>
+        <mu2>10.0</mu2>
+        <xacro:if value="${color == ''}">
+            <material>Gazebo/White</material>
+        </xacro:if>
+        <xacro:if value="${color != ''}">
+            <material>Gazebo/${color}</material>
+        </xacro:if>
+        
+        </gazebo>
+</xacro:macro>
 
 
 <!-- ################### LINK Definitions ############################# -->
@@ -271,7 +355,7 @@ This is by far the most useful feature of XACROS. There are two main types of MA
 
             <joint name="head_upperlegM1_joint" type="revolute">
                 <parent link="head_link"/>
-                <child link="upperleg_M1_link"/>
+                <child link="upperlegM1_link"/>
                 <!--this is the Pitch value from the urdf to graphiz map pdf-->
                 <!--<origin xyz="-0.02165 -0.0125 -0.008" rpy="3.14159 -1.05879e-22 0.523599"/>-->
                 <!--This Pitch value is from solution-->
@@ -284,7 +368,7 @@ This is by far the most useful feature of XACROS. There are two main types of MA
 
             <joint name="head_upperlegM2_joint" type="revolute">
                 <parent link="head_link"/>
-                <child link="upperleg_M2_link"/>
+                <child link="upperlegM2_link"/>
                 <origin xyz="0.02165 -0.0125 -0.008" rpy="3.14159 0 2.61799"/>
                 <!--Rest NOT NEEDED for FIXED joint-->
                 <limit lower="-1.57" upper="0.0" effort="1.0" velocity="0.005"/>
@@ -293,65 +377,20 @@ This is by far the most useful feature of XACROS. There are two main types of MA
 
             <joint name="head_upperlegM3_joint" type="revolute">
                 <parent link="head_link"/>
-                <child link="upperleg_M3_link"/>
+                <child link="upperlegM3_link"/>
                 <origin xyz="0 0.025 -0.008" rpy="3.14159 0 -1.5708"/>
                 <!--Rest NOT NEEDED for FIXED joint-->
                 <limit lower="-1.57" upper="0.0" effort="1.0" velocity="0.005"/>
                 <axis xyz="0 1 0"/>
             </joint>
 
-                    <joint name="upperlegM1_lowerlegM1_joint" type="revolute">
-                        <parent link="upperleg_M1_link"/>
-                        <child link="lowerleg_M1_link"/>
-                        <origin xyz="0 0.0095 0.06" rpy="0 0 3.14159"/>
-                        <limit lower="-2.65" upper="0" effort="1.0" velocity="0.005"/>
-                        <axis xyz="0 1 0"/>
-                    </joint>
+                    <xacro:generate_upperleg_lowerleg_joint num="1"/>
+                    <xacro:generate_upperleg_lowerleg_joint num="2"/>
+                    <xacro:generate_upperleg_lowerleg_joint num="3"/>
 
-                    <joint name="upperlegM2_lowerlegM2_joint" type="revolute">
-                        <parent link="upperleg_M2_link"/>
-                        <child link="lowerleg_M2_link"/>
-                        <origin xyz="0 0.0095 0.06" rpy="0 0 3.14159"/>
-                        <limit lower="-2.65" upper="0" effort="1.0" velocity="0.005"/>
-                        <axis xyz="0 1 0"/>
-                    </joint>
-
-                    <joint name="upperlegM3_lowerlegM3_joint" type="revolute">
-                        <parent link="upperleg_M3_link"/>
-                        <child link="lowerleg_M3_link"/>
-                        <origin xyz="0 0.0095 0.06" rpy="0 0 3.14159"/>
-                        <limit lower="-2.65" upper="0" effort="1.0" velocity="0.005"/>
-                        <axis xyz="0 1 0"/>
-                    </joint>
-
-                            <joint name="basefoot_peg_M1_basefoot_peg_M1_joint_joint" type="fixed">
-                                <parent link="lowerleg_M1_link"/>
-                                <child link="footM1_link"/>
-                                <origin xyz="0 0 0.06" rpy="0 0 0"/>
-                                <!--Rest NOT NEEDED for FIXED joint-->
-                                <!--<limit lower="-2.65" upper="0" effort="1.0" velocity="0.005"/>-->
-                                <!--<axis xyz="0 1 0"/>-->
-                            </joint>
-
-                            <joint name="basefoot_peg_M2_basefoot_peg_M2_joint_joint" type="fixed">
-                                <parent link="lowerleg_M2_link"/>
-                                <child link="footM2_link"/>
-                                <origin xyz="0 0 0.06" rpy="0 0 0"/>
-                                <!--Rest NOT NEEDED for FIXED joint-->
-                                <!--<limit lower="-2.65" upper="0" effort="1.0" velocity="0.005"/>-->
-                                <!--<axis xyz="0 1 0"/>-->
-                            </joint>
-
-                            <joint name="basefoot_peg_M3_basefoot_peg_M3_joint_joint" type="fixed">
-                                <parent link="lowerleg_M3_link"/>
-                                <child link="footM3_link"/>
-                                <origin xyz="0 0 0.06" rpy="0 0 0"/>
-                                <!--Rest NOT NEEDED for FIXED joint-->
-                                <!--<limit lower="-2.65" upper="0" effort="1.0" velocity="0.005"/>-->
-                                <!--<axis xyz="0 1 0"/>-->
-                            </joint>
-
-
+                            <xacro:generate_lowerleg_foot_joint num="1"/>
+                            <xacro:generate_lowerleg_foot_joint num="2"/>
+                            <xacro:generate_lowerleg_foot_joint num="3"/>
 
 
 
@@ -361,75 +400,13 @@ This is by far the most useful feature of XACROS. There are two main types of MA
 <!-- ################### TRANSMISSION Definitions ############################# -->
 <!-- ################### TRANSMISSION Definitions ############################# -->
 
+            <xacro:generate_head_upperleg_transmission num="1"/>
+            <xacro:generate_head_upperleg_transmission num="2"/>
+            <xacro:generate_head_upperleg_transmission num="3"/>
 
-
-            <!-- <transmission name="transmission_head_upperlegM1">
-                <type>transmission_interface/SimpleTransmission</type>
-                <joint name="head_upperlegM1_joint">
-                    <hardwareInterface>EffortJointInterface</hardwareInterface>
-                </joint>
-                <actuator name="motor_head_upperlegM1">
-                    <hardwareInterface>EffortJointInterface</hardwareInterface>
-                    <mechanicalReduction>1</mechanicalReduction>
-                </actuator>
-            </transmission>
-
-            <transmission name="transmission_head_upperlegM2">
-                <type>transmission_interface/SimpleTransmission</type>
-                <joint name="head_upperlegM2_joint">
-                    <hardwareInterface>EffortJointInterface</hardwareInterface>
-                </joint>
-                <actuator name="motor_head_upperlegM2">
-                    <hardwareInterface>EffortJointInterface</hardwareInterface>
-                    <mechanicalReduction>1</mechanicalReduction>
-                </actuator>
-            </transmission>
-
-            <transmission name="transmission_head_upperlegM3">
-                <type>transmission_interface/SimpleTransmission</type>
-                <joint name="head_upperlegM3_joint">
-                    <hardwareInterface>EffortJointInterface</hardwareInterface>
-                </joint>
-                <actuator name="motor_head_upperlegM3">
-                    <hardwareInterface>EffortJointInterface</hardwareInterface>
-                    <mechanicalReduction>1</mechanicalReduction>
-                </actuator>
-            </transmission>
-
-                    <transmission name="transmission_upperlegM1_lowerlegM1">
-                        <type>transmission_interface/SimpleTransmission</type>
-                        <joint name="upperlegM1_lowerlegM1_joint">
-                            <hardwareInterface>EffortJointInterface</hardwareInterface>
-                        </joint>
-                        <actuator name="motor_upperlegM1_lowerlegM1">
-                            <hardwareInterface>EffortJointInterface</hardwareInterface>
-                            <mechanicalReduction>1</mechanicalReduction>
-                        </actuator>
-                    </transmission>
-
-                    <transmission name="transmission_upperlegM2_lowerlegM2">
-                        <type>transmission_interface/SimpleTransmission</type>
-                        <joint name="upperlegM2_lowerlegM2_joint">
-                            <hardwareInterface>EffortJointInterface</hardwareInterface>
-                        </joint>
-                        <actuator name="motor_upperlegM2_lowerlegM2">
-                            <hardwareInterface>EffortJointInterface</hardwareInterface>
-                            <mechanicalReduction>1</mechanicalReduction>
-                        </actuator>
-                    </transmission>
-
-                    <transmission name="transmission_upperlegM3_lowerlegM3">
-                        <type>transmission_interface/SimpleTransmission</type>
-                        <joint name="upperlegM3_lowerlegM3_joint">
-                            <hardwareInterface>EffortJointInterface</hardwareInterface>
-                        </joint>
-                        <actuator name="motor_upperlegM3_lowerlegM3">
-                            <hardwareInterface>EffortJointInterface</hardwareInterface>
-                            <mechanicalReduction>1</mechanicalReduction>
-                        </actuator>
-                    </transmission> -->
-
-
+                <xacro:generate_upperleg_lowerleg_transmission num="1"/>
+                <xacro:generate_upperleg_lowerleg_transmission num="2"/>
+                <xacro:generate_upperleg_lowerleg_transmission num="3"/>
 
 
 
@@ -443,38 +420,13 @@ This is by far the most useful feature of XACROS. There are two main types of MA
             <mu1>10.0</mu1>
             <mu2>10.0</mu2>
         </gazebo>
-                            <!-- This is for color and physical properties in Gazebo, color won't work with the material tag in gazebo
-                            only for URDF coloring -->
-                            <gazebo reference="footM1_link">
-                                <kp>1000.0</kp>
-                                <kd>1000.0</kd>
-                                <mu1>10.0</mu1>
-                                <mu2>10.0</mu2>
-                                <!--<material>Gazebo/Red</material>-->
-                                <material>Gazebo/White</material>
-                            </gazebo>
 
-                            <!-- This is for color and physical properties in Gazebo, color won't work with the material tag in gazebo
-                            only for URDF coloring -->
-                            <gazebo reference="footM2_link">
-                                <kp>1000.0</kp>
-                                <kd>1000.0</kd>
-                                <mu1>10.0</mu1>
-                                <mu2>10.0</mu2>
-                                <!--<material>Gazebo/Green</material>-->
-                                <material>Gazebo/White</material>
-                            </gazebo>
+        <xacro:generate_foot_gazebo_reference num="1" color=""/>
+        <xacro:generate_foot_gazebo_reference num="2" />
+        <xacro:generate_foot_gazebo_reference num="3" color="White"/>
+        <xacro:generate_foot_gazebo_reference num="3" color="Blue"/>
 
-                            <!-- This is for color and physical properties in Gazebo, color won't work with the material tag in gazebo
-                            only for URDF coloring -->
-                            <gazebo reference="footM3_link">
-                                <kp>1000.0</kp>
-                                <kd>1000.0</kd>
-                                <mu1>10.0</mu1>
-                                <mu2>10.0</mu2>
-                                <!--<material>Gazebo/Blue</material>-->
-                                <material>Gazebo/White</material>
-                            </gazebo>
+
 
 <!-- ################### SENSOR Definitions ############################# -->
 <!-- ################### SENSOR Definitions ############################# -->
@@ -482,7 +434,7 @@ This is by far the most useful feature of XACROS. There are two main types of MA
 <!-- ################### SENSOR Definitions ############################# -->
 <!-- ################### SENSOR Definitions ############################# -->
 
-    <!-- <gazebo>
+    <gazebo>
         <plugin name="gazebo_ros_imu_controller" filename="libgazebo_ros_imu.so">
             <robotNamespace>/gurdy</robotNamespace>
             <topicName>imu/data</topicName>
@@ -494,7 +446,7 @@ This is by far the most useful feature of XACROS. There are two main types of MA
             <alwaysOn>true</alwaysOn>
             <gaussianNoise>0</gaussianNoise>
         </plugin>
-</gazebo> -->
+    </gazebo>
 
 
 
