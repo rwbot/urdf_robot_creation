@@ -1,4 +1,4 @@
-# # Unit 2: Adapt URDF for Gazebo Simulator
+# # Unit 3: Adapt URDF for Gazebo Simulator
 
 URDF files are very useful, as you have seen, for having a virtual representation of the different links and joints.  
 But you are not simulating its weight, its inertia, what sensors it has, how it collides with other objects, the friction with the floor, or how the server position control will react to the robot.
