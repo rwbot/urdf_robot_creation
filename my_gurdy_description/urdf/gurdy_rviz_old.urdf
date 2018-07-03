@@ -1,3 +1,6 @@
+<!--OLDER VERSION THAN GURDY.URDF-->
+
+
 <?xml version="1.0"?>
 <robot name="gurdy">
 
@@ -30,8 +33,8 @@
 <!-- ################### LINK Definitions ############################# -->
 <!-- ################### LINK Definitions ############################# -->
 
-BOX w*d*h, Iw = 1.66666666667e-08,Id = 1.66666666667e-08,Ih = 1.66666666667e-08
-#
+<!--BOX w*d*h, Iw = 1.66666666667e-08,Id = 1.66666666667e-08,Ih = 1.66666666667e-08-->
+
     <link name="base_link">
         <inertial>
             <origin/>
