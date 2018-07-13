@@ -13,7 +13,9 @@ Follow the same procedure that we followed to create the Mira URDF. These are so
     This Link Tree will give you a good idea of the morphology of Gurdy's link structure. 
     
    * [rqt_tf_tree](http://wiki.ros.org/rqt_tf_tree)
-    
+```
+rosrun rqt_tf_tree rqt_tf_tree
+```
 ![](https://github.com/rwbot/urdf_robot_creation/blob/master/images/gurdy/gurdy_link_tree.png?raw=true)
 
 ---
