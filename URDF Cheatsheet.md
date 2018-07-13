@@ -3,9 +3,14 @@ Handy URDF ROS commands:
 Unit 1:
 Link Tree will give you a good idea of the morphology of Gurdy's link structure. 
 [rqt_tf_tree](http://wiki.ros.org/rqt_tf_tree)
+```
+rosrun rqt_tf_tree rqt_tf_tree
+```
 
 You can also see the Link-Joint structure of any URDF file through the urdf_to_graphiz tool:
+```
 urdf_to_graphiz mira.urdf
+```
 
 Visualize URDF:
 urdf_visualize.launch
