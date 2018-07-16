@@ -6,6 +6,18 @@ Link Tree will give you a good idea of the morphology of Gurdy's link structure.
 ```
 rosrun rqt_tf_tree rqt_tf_tree
 ```
+OR
+View frames can generate a pdf file with a graphical representation of the complete tf tree. It also generates a number of time-related statistics. To run view frames, type:
+
+```
+rosrun tf view_frames
+```
+In the current working folder, you should now have a file called "frames.pdf". Open the file:
+```
+evince frames.pdf
+```
+
+---
 
 You can also see the Link-Joint structure of any URDF file through the urdf_to_graphiz tool:
 ```
