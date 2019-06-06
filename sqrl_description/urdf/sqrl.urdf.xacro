@@ -1,6 +1,12 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="sqrl">
 <xacro:property name="PI" value="3.1415926535897931"/>
+
+<material name="dark_grey"><color rgba="0.2 0.2 0.2 1.0" /></material>
+<material name="light_grey"><color rgba="0.4 0.4 0.4 1.0" /></material>
+<material name="yellow"><color rgba="0.8 0.8 0.0 1.0" /></material>
+<material name="black"><color rgba="0.15 0.15 0.15 1.0" /></material>
+
 <!--For base_link there is no inertia needed because its a non-functional element-->
 <!-- Length = X     Width = Y   Height = Z -->
 <!--chassis :  length=0.7 width=0.5 height=0.4    mass=5kg, -->
@@ -12,10 +18,80 @@
 <xacro:property name="CHASSIS_WIDTH" value="0.5"/>
 <xacro:property name="CHASSIS_HEIGHT" value="0.4"/>
 <xacro:property name="CHASSIS_HEIGHT_OFFSET" value="0.12"/>
+<xacro:property name="CHASSIS_IXX" value="0.170833333333"/>
+<xacro:property name="CHASSIS_IYY" value="0.270833333333"/>
+<xacro:property name="CHASSIS_IZZ" value="0.308333333333"/>
+<xacro:macro name="CHASSIS_INTERIA">
+    <inertial>
+        <origin xyz="0 0 ${CHASSIS_HEIGHT_OFFSET}" rpy="0 0 0"/>
+        <mass value="${CHASSIS_MASS}"/>
+        <inertia ixx="${CHASSIS_IXX}" ixy="0.0" ixz="0.0"
+                 iyy="${CHASSIS_IYY}" iyz="0.0"
+                 izz="${CHASSIS_IZZ}"/>
+    </inertial>
+</xacro:macro>
 
 <xacro:property name="FRAME_MASS" value="0.5"/>
 <xacro:property name="MOTOR_MASS" value="0.5"/>
 <xacro:property name="WHEEL_MASS" value="0.46"/>
+<!--######################## GAZEBO REFERENCE XACROS ########################-->
+<!--######################## GAZEBO REFERENCE XACROS ########################-->
+<!--######################## GAZEBO REFERENCE XACROS ########################-->
+<!--######################## GAZEBO REFERENCE XACROS ########################-->
+
+<xacro:macro name="generate_gazebo_reference" params="link_name color=White">
+    <!-- <material>color</material> only works for rviz URDF, not Gazebo -->
+    <!-- If 'color' param is unspecified, it defaults to White -->
+    <gazebo reference="${link_name}">
+        <kp>1000.0</kp>
+        <kd>1000.0</kd>
+        <mu1>10.0</mu1>
+        <mu2>10.0</mu2>
+        <xacro:if value="${color == ''}">
+            <material>Gazebo/White</material>
+        </xacro:if>
+        <xacro:if value="${color != ''}">
+            <material>Gazebo/${color}</material>
+        </xacro:if>
+    </gazebo>
+</xacro:macro>
+
+<!-- ################### LINK Definitions ############################# -->
+<!-- ################### LINK Definitions ############################# -->
+<!-- ################### LINK Definitions ############################# -->
+<!-- ################### LINK Definitions ############################# -->
+<!-- ################### LINK Definitions ############################# -->
+<link name="base_link"></link>
+
+  <joint name="base_link_joint" type="fixed">
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <parent link="base_link"/>
+    <child link="chassis_link" />
+  </joint>
+
+  <link name="chassis_link">
+    <visual>
+      <origin xyz="0 0 ${4*CHASSIS_HEIGHT_OFFSET}" rpy="0 0 0"/>
+      <geometry>
+        <box size="${CHASSIS_LENGTH} ${CHASSIS_WIDTH} ${CHASSIS_HEIGHT}"/>
+      </geometry>
+      <!-- <material>Gazebo/White</material> -->
+    </visual>
+    <collision>
+      <origin xyz="0 0 ${CHASSIS_HEIGHT_OFFSET}"/>
+      <geometry>
+        <box size="${CHASSIS_LENGTH} ${CHASSIS_WIDTH} ${CHASSIS_HEIGHT}"/>
+      </geometry>
+    </collision>
+    <xacro:CHASSIS_INTERIA/>
+  </link>
+
+<!-- ################### MATERIALS Definitions ############################# -->
+<!-- ################### MATERIALS Definitions ############################# -->
+<!-- ################### MATERIALS Definitions ############################# -->
+<!-- ################### MATERIALS Definitions ############################# -->
+<!-- ################### MATERIALS Definitions ############################# -->
+    <xacro:generate_gazebo_reference link_name="chassis_link" color="White"/>
 
 
 </robot>
