@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="sqrl">
+<xacro:property name="PI" value="3.1415926535897931"/>
+<!--For base_link there is no inertia needed because its a non-functional element-->
+<!-- Length = X     Width = Y   Height = Z -->
+<!--chassis :  length=0.7 width=0.5 height=0.4    mass=5kg, -->
+<!--frame :    length=0.7 width=0.5 height=0.45     mass=0.5kg,-->
+<!--motors :   cylinder radius=0.06  height=0.06  mass=0.5kg-->
+<!--wheels :   cylinder radius=0.21  width=0.09  mass=0.46kg (Assumed 10lbs)-->
+<xacro:property name="CHASSIS_MASS" value="5"/>
+<xacro:property name="CHASSIS_LENGTH" value="0.7"/>
+<xacro:property name="CHASSIS_WIDTH" value="0.5"/>
+<xacro:property name="CHASSIS_HEIGHT" value="0.4"/>
+<xacro:property name="CHASSIS_HEIGHT_OFFSET" value="0.12"/>
+
+<xacro:property name="FRAME_MASS" value="0.5"/>
+<xacro:property name="MOTOR_MASS" value="0.5"/>
+<xacro:property name="WHEEL_MASS" value="0.46"/>
+
+
+</robot>
